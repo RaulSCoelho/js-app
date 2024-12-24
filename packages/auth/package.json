@@ -6,15 +6,13 @@
   "types": "src/index.ts",
   "devDependencies": {
     "@js-app/eslint-config": "workspace:*",
-    "@js-app/prettier": "workspace:*",
     "@js-app/tsconfig": "workspace:*"
   },
   "eslintConfig": {
     "extends": [
-      "@js-app/eslint-config/library"
+      "@js-app/eslint-config/next"
     ]
   },
-  "prettier": "@js-app/prettier",
   "dependencies": {
     "@casl/ability": "^6.7.1",
     "zod": "^3.22.4"

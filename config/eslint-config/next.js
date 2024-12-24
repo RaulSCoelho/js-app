@@ -1,8 +1,9 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  extends: ['@rocketseat/eslint-config/next'],
-  plugins: ['simple-import-sort'],
+  extends: ['@raulscoelho/eslint-config/next', "next/core-web-vitals"],
   rules: {
-    'simple-import-sort/imports': 'error',
+    'react/no-unescaped-entities': 'off',
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
 }

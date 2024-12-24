@@ -1,8 +1,11 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  extends: ['@rocketseat/eslint-config/node'],
-  plugins: ['simple-import-sort'],
+  extends: ['@raulscoelho/eslint-config/node'],
   rules: {
-    'simple-import-sort/imports': 'error',
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "camelcase": "off"
   },
 }

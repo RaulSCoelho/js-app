@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@js-app/eslint-config": "workspace:*",
-    "@js-app/prettier": "workspace:*",
     "@js-app/tsconfig": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -32,7 +31,6 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "prettier": "@js-app/prettier",
   "eslintConfig": {
     "extends": [
       "@js-app/eslint-config/next"

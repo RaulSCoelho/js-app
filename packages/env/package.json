@@ -6,16 +6,14 @@
   "types": "index.ts",
   "devDependencies": {
     "@js-app/eslint-config": "workspace:*",
-    "@js-app/prettier": "workspace:*",
     "@js-app/tsconfig": "workspace:*",
     "@types/node": "^20.12.6"
   },
   "eslintConfig": {
     "extends": [
-      "@js-app/eslint-config/library"
+      "@js-app/eslint-config/next"
     ]
   },
-  "prettier": "@js-app/prettier",
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.9.2",
     "zod": "^3.22.4"
