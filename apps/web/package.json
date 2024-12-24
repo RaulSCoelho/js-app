@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "eslint . --fix",
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
@@ -27,12 +28,14 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "dotenv-cli": "^8.0.0",
+    "eslint-config-next": "^15.1.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
   "eslintConfig": {
     "extends": [
+      "next/core-web-vitals",
       "@js-app/eslint-config/next"
     ]
   }

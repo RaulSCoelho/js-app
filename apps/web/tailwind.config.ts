@@ -8,7 +8,7 @@ const config: Config = {
     './src/pages/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
     './src/app/**/*.{ts,tsx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {},
   plugins: [
@@ -19,20 +19,20 @@ const config: Config = {
           colors: {
             info: {
               DEFAULT: '#CAFDF5',
-              foreground: '#000000',
-            },
-          } as Partial<ThemeColors>,
+              foreground: '#000000'
+            }
+          } as Partial<ThemeColors>
         },
         dark: {
           colors: {
             info: {
               DEFAULT: '#00B8D9',
-              foreground: '#FFFFFF',
-            },
-          } as Partial<ThemeColors>,
-        },
-      },
-    }),
-  ],
+              foreground: '#FFFFFF'
+            }
+          } as Partial<ThemeColors>
+        }
+      }
+    })
+  ]
 }
 export default config
