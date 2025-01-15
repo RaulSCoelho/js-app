@@ -1,4 +1,5 @@
 import { nextui, ThemeColors } from '@nextui-org/react'
+import { tailwindScrollbar } from '@raulscoelho/tailwind-scrollbar'
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -11,6 +12,7 @@ const config: Config = {
   ],
   theme: {},
   plugins: [
+    tailwindScrollbar(),
     nextui({
       themes: {
         light: {

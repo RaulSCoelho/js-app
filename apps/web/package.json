@@ -14,7 +14,7 @@
     "@js-app/auth": "workspace:*",
     "@js-app/env": "workspace:*",
     "@nextui-org/react": "^2.6.10",
-    "@raulscoelho/tailwind-scrollbar": "^1.1.2",
+    "@raulscoelho/tailwind-scrollbar": "^1.1.4",
     "framer-motion": "^11.15.0",
     "next": "15.1.2",
     "next-themes": "^0.4.4",
