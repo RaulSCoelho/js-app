@@ -1,9 +1,4 @@
-import {
-  AbilityBuilder,
-  CreateAbility,
-  createMongoAbility,
-  MongoAbility,
-} from '@casl/ability'
+import { AbilityBuilder, CreateAbility, createMongoAbility, MongoAbility } from '@casl/ability'
 import { z } from 'zod'
 
 import { User } from './models/user'
@@ -13,10 +8,7 @@ import { userSubject } from './subjects/user'
 export * from './models/user'
 export * from './roles'
 
-const appAbilitiesSchema = z.union([
-  userSubject,
-  z.tuple([z.literal('manage'), z.literal('all')]),
-])
+const appAbilitiesSchema = z.union([userSubject, z.tuple([z.literal('manage'), z.literal('all')])])
 
 type AppAbilities = z.infer<typeof appAbilitiesSchema>
 
@@ -35,7 +27,7 @@ export function defineAbilityFor(user: User) {
   const ability = builder.build({
     detectSubjectType(subject) {
       return subject.__typename
-    },
+    }
   })
 
   ability.can = ability.can.bind(ability)

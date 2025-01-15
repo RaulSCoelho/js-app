@@ -3,15 +3,15 @@ import { z } from 'zod'
 
 export const env = createEnv({
   server: {
-    PORT: z.coerce.number().default(3333),
+    PORT: z.coerce.number().default(3333)
   },
   client: {},
   shared: {
-    NEXT_PUBLIC_API_URL: z.string().url(),
+    NEXT_PUBLIC_API_URL: z.string().url()
   },
   runtimeEnv: {
     PORT: process.env.SERVER_PORT,
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
   },
-  emptyStringAsUndefined: true,
+  emptyStringAsUndefined: true
 })
