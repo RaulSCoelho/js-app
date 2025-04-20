@@ -1,13 +1,13 @@
 {
   "name": "@js-app/eslint-config",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "files": [
     "next.js",
     "node.js"
   ],
   "devDependencies": {
-    "@raulscoelho/eslint-config": "^1.1.2"
+    "@raulscoelho/eslint-config": "^1.1.3"
   },
   "eslintConfig": {
     "extends": ["./next.js"]
