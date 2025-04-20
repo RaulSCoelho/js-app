@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "@js-app/eslint-config/next",
+    "next/core-web-vitals"
+  ]
+}
