@@ -1,7 +1,7 @@
+import { tryParseJSON } from '@js-app/shared-utils'
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 
 import { Cookie, CookieOptions, RequestCookie, defaultCookieOptions } from '.'
-import { tryParseJSON } from '../object'
 
 export function getServerCookies(cookies: ReadonlyRequestCookies) {
   function serverCookies<T = any>(): RequestCookie<T>[] {

@@ -1,9 +1,3 @@
-import {
-  ElementType,
-  ComponentProps as ReactComponentProps,
-  ComponentPropsWithoutRef as ReactComponentPropsWithoutRef
-} from 'react'
-
 export type Timer = ReturnType<typeof setTimeout>
 
 export type Primitive = null | undefined | string | number | boolean | symbol | bigint
@@ -18,14 +12,4 @@ export type LiteralIntersection<T, U> = T & (U & { _?: never })
  */
 export type MergeTypes<T1, T2, OmitKeys extends keyof any = never> = Omit<Omit<T1, keyof T2> & T2, OmitKeys>
 
-export type ComponentProps<T1 extends ElementType<any>, T2, OmitKeys extends keyof any = never> = MergeTypes<
-  ReactComponentProps<T1>,
-  T2,
-  OmitKeys
->
-
-export type ComponentPropsWithoutRef<
-  T1 extends ElementType<any>,
-  T2 = any,
-  OmitKeys extends keyof any = never
-> = MergeTypes<ReactComponentPropsWithoutRef<T1>, T2, OmitKeys>
+export type FromPromise<T> = T extends PromiseLike<infer U> ? U : T

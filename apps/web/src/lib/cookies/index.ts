@@ -1,9 +1,9 @@
 import { LiteralUnion } from 'react-hook-form'
 
+import { tryParseJSON } from '@js-app/shared-utils'
 import { CookieAttr } from 'cookies'
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
 
-import { tryParseJSON } from '../object'
 import { getServerCookies } from './server'
 
 export type Cookie = LiteralUnion<'access-token' | 'preferred-language', string>

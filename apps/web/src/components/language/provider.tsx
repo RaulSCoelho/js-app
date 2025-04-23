@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { cookies } from '@/lib/cookies'
 
 import { LanguageContext } from './context'
-import { SupportedLanguage } from './types'
+import { multiLangText as originalMultiLangText } from './multi-lang-text'
+import { LanguageText, SupportedLanguage } from './types'
 
 const supportedLanguages: SupportedLanguage[] = ['en', 'es', 'fr', 'de', 'pt-BR']
 
@@ -31,20 +32,25 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<SupportedLanguage>('en')
   const [isLoading, setIsLoading] = useState(true)
 
+  const setLanguage = useCallback((lang: SupportedLanguage) => {
+    setLanguageState(lang)
+    cookies.set('preferred-language', lang)
+  }, [])
+
+  const multiLangText = useCallback(
+    (texts: LanguageText) => originalMultiLangText(texts, { lang: language }),
+    [language]
+  )
+
   useEffect(() => {
     getSavedLanguage().then(lang => {
       setLanguage(lang)
       setIsLoading(false)
     })
-  }, [])
-
-  const setLanguage = (lang: SupportedLanguage) => {
-    setLanguageState(lang)
-    cookies.set('preferred-language', lang)
-  }
+  }, [setLanguage])
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, isLoading }}>
+    <LanguageContext.Provider value={{ language, setLanguage, isLoading, multiLangText }}>
       {isLoading ? null : children}
     </LanguageContext.Provider>
   )

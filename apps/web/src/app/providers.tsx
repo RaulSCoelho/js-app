@@ -1,6 +1,6 @@
 'use client'
 
-import { LanguageProvider } from '@/components'
+import { LanguageProvider } from '@/components/language'
 import { HeroUIProvider, ToastProvider } from '@heroui/react'
 import { ThemeProvider } from 'next-themes'
 import { useRouter } from 'next/navigation'

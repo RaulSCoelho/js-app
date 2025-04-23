@@ -4,6 +4,10 @@ export type LanguageText = {
   [key in Language]?: string
 }
 
+export type SupportedLanguageText = {
+  [key in SupportedLanguage]?: string
+}
+
 export type Language =
   | 'af'
   | 'af-ZA'
