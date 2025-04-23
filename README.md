@@ -35,7 +35,7 @@
 This repository uses [pnpm workspaces](https://pnpm.io/workspaces) and [Turborepo](https://turbo.build/) to host multiple applications (frontend and backend) alongside shared packages and configuration, ensuring consistency and efficient development across the stack.
 
 ## Technology Stack
-- **Node.js** ≥ 18
+- **Node.js** ≥ 22
 - **pnpm** for fast, disk space–efficient package management
 - **Turborepo** for orchestrating builds, tests, and linting
 - **Next.js** with the App Router for the web front-end
@@ -49,24 +49,26 @@ This repository uses [pnpm workspaces](https://pnpm.io/workspaces) and [Turborep
 ```
 js-app/
 ├── apps/
-│   ├── web/        # Next.js front-end application
-│   └── api/        # NestJS back-end application
-├── packages/
-│   ├── env/        # Shared environment configuration
-│   └── auth/       # Shared authentication & authorization logic
+│   ├── api/        # NestJS back-end application
+│   └── web/        # Next.js front-end application
 ├── config/
 │   ├── eslint-config/       # Shared ESLint configs
 │   └── typescript-config/   # Shared TypeScript configs
-├── turbo.json
+├── packages/
+│   ├── auth/       # Shared authentication & authorization logic
+│   └── env/        # Shared environment configuration
+├── .npmrc                # pnpm configuration
+├── package.json            # Root scripts & workspace config
 ├── pnpm-workspace.yaml
-└── package.json            # Root scripts & workspace config
+├── README.md
+└── turbo.json
 ```
 
 ## Getting Started
 
 ### Prerequisites
-- **Node.js** ≥ 18.x
-- **pnpm** ≥ 8.x
+- **Node.js** ≥ 22
+- **pnpm** ≥ 10.8.1
 
 ### Installation
 ```bash
