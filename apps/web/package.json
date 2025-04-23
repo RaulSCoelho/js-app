@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@js-app/auth": "workspace:^",
     "@js-app/env": "workspace:^",
+    "@raulscoelho/tailwind-scrollbar": "^1.1.4",
     "framer-motion": "^12.7.4",
     "next": "15.3.1",
     "next-themes": "^0.4.6",

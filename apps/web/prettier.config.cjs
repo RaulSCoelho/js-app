@@ -1,4 +1,4 @@
 module.exports = {
-  tailwindFunctions: ['tv'],
+  tailwindFunctions: ['tv', 'cn', 'clsx'],
   plugins: ['prettier-plugin-tailwindcss']
 }
