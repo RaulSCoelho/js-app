@@ -17,7 +17,7 @@ const sidebar = tv({
     base: 'group flex h-[100dvh]',
     wrapper: 'w-[60px] text-primary transition-width lg:group-data-[open=true]:w-[min(280px,_23%)]',
     sidebar:
-      'fixed left-0 z-30 flex h-[100dvh] w-[60px] select-none flex-col rounded-br-large bg-background/60 transition-width group-data-[open=true]:w-[min(280px,_calc(100%_-_10px))] lg:group-data-[open=true]:w-[min(280px,_23%)]',
+      'fixed left-0 z-30 flex h-[100dvh] w-[60px] select-none flex-col rounded-br-large bg-background/60 backdrop-blur-lg backdrop-saturate-150 transition-width group-data-[open=true]:w-[min(280px,_calc(100%_-_10px))] lg:group-data-[open=true]:w-[min(280px,_23%)]',
     content:
       'flex w-[calc(100vw_-_60px)] grow flex-col transition-width lg:group-data-[open=true]:w-[max(calc(100vw_-_280px),_77%)]'
   }
