@@ -10,18 +10,17 @@ import { usePathname } from 'next/navigation'
 
 import { Collapse } from '../collapse'
 import { IconType } from '../icon'
-import { useSidebar } from './context'
 
 export const sidebarRoute = tv({
   slots: {
     base: 'group flex min-w-0 shrink-0 cursor-pointer items-center justify-start gap-2 rounded-small p-2.5 text-inherit',
-    icon: 'h-5 w-5 shrink-0',
+    icon: 'h-5 w-5 shrink-0 outline-none',
     text: 'grow whitespace-nowrap font-semibold group-data-[open=false]:hidden',
     subRoute: ''
   },
   variants: {
     isSubRoute: {
-      true: { base: 'p-1.5', icon: 'h-4 w-4' }
+      true: { base: 'p-1.5 pl-[2.125rem]', icon: 'h-4 w-4' }
     }
   }
 })
@@ -65,7 +64,6 @@ export const SidebarRoute = forwardRef<HTMLButtonElement, SidebarRouteProps>(fun
   },
   ref
 ) {
-  const sidebar = useSidebar()
   const pathname = usePathname()
   const classes = sidebarRoute({ isSubRoute })
   const isActive = getIsActive(pathname, props.href, subRoutes)
@@ -91,20 +89,18 @@ export const SidebarRoute = forwardRef<HTMLButtonElement, SidebarRouteProps>(fun
         data-subroute-open={isOpen}
         size={size}
         variant={isActive ? activeVariant : variant}
-        startContent={
-          subRoutes ? (
-            <ChevronRightIcon
-              className="h-5 w-5 shrink-0 transition-transform group-data-[open=false]:hidden group-data-[subroute-open=true]:rotate-90"
-              onClick={toggleOpen}
-            />
-          ) : undefined
-        }
         className={classes.base({
           class: [classNames?.base, className]
         })}
         {...props}
       >
-        {Icon && (!subRoutes || !sidebar.isOpen) && <Icon className={classes.icon({ class: classNames?.icon })} />}
+        {subRoutes && (
+          <ChevronRightIcon
+            className="h-5 w-5 shrink-0 outline-none transition-transform group-data-[open=false]:hidden group-data-[subroute-open=true]:rotate-90"
+            onClick={toggleOpen}
+          />
+        )}
+        {Icon && <Icon className={classes.icon({ class: classNames?.icon })} />}
         <p className={classes.text({ class: classNames?.text })}>{children}</p>
       </Button>
       {subRoutes && (
