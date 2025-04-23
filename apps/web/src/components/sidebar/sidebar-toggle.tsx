@@ -9,7 +9,7 @@ import { useSidebar } from './context'
 
 const toggle = tv({
   slots: {
-    base: 'h-auto min-w-0 p-1 text-inherit',
+    base: 'h-auto min-w-0 p-1.5 text-inherit',
     icon: 'w-7 shrink-0'
   }
 })

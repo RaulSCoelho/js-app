@@ -9,7 +9,7 @@ import { SidebarRoutes } from './sidebar-routes'
 export function AppSidebar({ children }: { children: React.ReactNode }) {
   return (
     <Sidebar content={children} className="bg-default-100">
-      <Sidebar.Header className="justify-start group-data-[open=false]:justify-center">
+      <Sidebar.Header>
         <SidebarToggle />
       </Sidebar.Header>
       <Sidebar.Body>
