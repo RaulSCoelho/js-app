@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@js-app/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@js-app/eslint-config": "workspace:^",
-    "@js-app/tsconfig": "workspace:^",
+    "@js-app/typescript-config": "workspace:^",
     "@types/cookies": "^0.9.0",
     "@types/node": "^20",
     "@types/react": "^19",
