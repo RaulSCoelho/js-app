@@ -10,7 +10,7 @@ export const env = createEnv({
     NEXT_PUBLIC_API_URL: z.string().url().default('http://localhost:3333')
   },
   runtimeEnv: {
-    PORT: process.env.SERVER_PORT,
+    PORT: process.env.PORT,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
   },
   emptyStringAsUndefined: true
