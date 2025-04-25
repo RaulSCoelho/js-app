@@ -1,0 +1,37 @@
+name: Deploy Web to Vercel
+
+on:
+  push:
+    paths:
+      - 'apps/web/**'
+      - 'config/**'
+      - 'packages/**'
+      - 'pnpm-workspace.yaml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node & pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Enable pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build web
+        run: pnpm --filter web build
+
+      - name: Deploy to Vercel (Web)
+        run: |
+          npx vercel --cwd apps/web --prod --confirm \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --org ${{ secrets.VERCEL_ORG_ID_WEB }} \
+            --project ${{ secrets.VERCEL_PROJECT_ID_WEB }}
