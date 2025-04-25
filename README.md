@@ -56,8 +56,9 @@ js-app/
 │   └── typescript-config/   # Shared TypeScript configs
 ├── packages/
 │   ├── auth/       # Shared authentication & authorization logic
-│   └── env/        # Shared environment configuration
-├── .npmrc                # pnpm configuration
+│   ├── env/       # Shared environment configuration
+│   └── shared-utils/        # Shared utility functions
+├── .gitignore
 ├── package.json            # Root scripts & workspace config
 ├── pnpm-workspace.yaml
 ├── README.md
