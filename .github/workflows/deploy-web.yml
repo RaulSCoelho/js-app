@@ -2,26 +2,34 @@ name: Deploy Web to Vercel
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'apps/web/**'
       - 'config/**'
       - 'packages/**'
-      - 'pnpm-workspace.yaml'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node & pnpm
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Enable pnpm
-        run: corepack enable && corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: '10.8.1'
+          run_install: false
 
       - name: Install dependencies
         run: pnpm install
