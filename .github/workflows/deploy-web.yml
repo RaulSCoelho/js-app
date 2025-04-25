@@ -32,14 +32,6 @@ jobs:
             registry-url: https://registry.npmjs.org
             cache: pnpm
 
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build web
-        run: pnpm --filter web build
-
-      - uses: actions/checkout@v2
-
       - name: Install Vercel CLI
         run: pnpm add --global vercel@latest
 
