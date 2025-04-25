@@ -3,6 +3,22 @@ module.exports = {
   extends: ['@rocketseat/eslint-config/node'],
   plugins: ['simple-import-sort'],
   rules: {
-    'simple-import-sort/imports': 'error'
+    camelcase: 'off',
+    'no-useless-constructor': 'off',
+    'no-shadow-restricted-names': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'simple-import-sort/imports': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        semi: false,
+        singleQuote: true,
+        arrowParens: 'avoid',
+        trailingComma: 'none',
+        endOfLine: 'auto',
+        printWidth: 120,
+        tabWidth: 2
+      }
+    ]
   }
 }

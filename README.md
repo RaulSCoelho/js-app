@@ -41,7 +41,7 @@ This repository uses [pnpm workspaces](https://pnpm.io/workspaces) and [Turborep
 - **Next.js** with the App Router for the web front-end
 - **NestJS** for the API back-end
 - **React**, **TypeScript**, and **Tailwind CSS** for UI development
-- **Zod** & **@t3-oss/env-nextjs** for type-safe environment variables
+- **Zod** for type-safe environment variables
 - **CASL** for role-based access control
 - **ESLint** & **Prettier** (with Tailwind plugin) for code quality and formatting
 
@@ -69,7 +69,7 @@ js-app/
 
 ### Prerequisites
 - **Node.js** ≥ 22
-- **pnpm** ≥ 10.8.1
+- **pnpm** ≥ 8.9.0
 
 ### Installation
 ```bash
@@ -186,8 +186,8 @@ pnpm --filter api start
 ## Shared Packages
 
 ### `@js-app/env`
-Centralizes environment variable schemas with Zod and `@t3-oss/env-nextjs`:
-- Validates server, client, and shared variables
+Centralizes environment variable schemas with Zod:
+- Validates server and client variables
 - Provides defaults and runtime checks
 
 ### `@js-app/auth`
