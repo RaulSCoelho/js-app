@@ -19,19 +19,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+            version: 10.8.1
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
+      - uses: actions/setup-node@v4
         with:
-          version: '10.8.1'
-          run_install: false
+            node-version: 22
+            registry-url: https://registry.npmjs.org
+            cache: pnpm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install
 
       - name: Build web
