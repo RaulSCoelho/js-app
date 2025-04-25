@@ -1,9 +1,5 @@
 export type SupportedLanguage = 'en' | 'es' | 'fr' | 'de' | 'pt-BR'
 
-export type LanguageText = {
-  [key in Language]?: string
-}
-
 export type SupportedLanguageText = {
   [key in SupportedLanguage]?: string
 }
@@ -220,3 +216,7 @@ export type Language =
   | 'zh-MO'
   | 'zh-SG'
   | 'zh-TW'
+
+export type LanguageText = {
+  [key in Language]?: string
+}

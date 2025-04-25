@@ -15,11 +15,11 @@ import { SidebarHeader } from './sidebar-header'
 const sidebar = tv({
   slots: {
     base: 'group flex h-[100dvh]',
-    wrapper: 'text-primary transition-width w-[60px] lg:group-data-[open=true]:w-[min(280px,_23%)]',
+    wrapper: 'w-[60px] text-primary transition-width lg:group-data-[open=true]:w-[min(280px,_23%)]',
     sidebar:
-      'rounded-br-large bg-background/60 transition-width fixed left-0 z-30 flex h-[100dvh] w-[60px] select-none flex-col backdrop-blur-lg backdrop-saturate-150 group-data-[open=true]:w-[min(280px,_calc(100%_-_10px))] lg:group-data-[open=true]:w-[min(280px,_23%)]',
+      'fixed left-0 z-30 flex h-[100dvh] w-[60px] select-none flex-col rounded-br-large bg-background/60 backdrop-blur-lg backdrop-saturate-150 transition-width group-data-[open=true]:w-[min(280px,_calc(100%_-_10px))] lg:group-data-[open=true]:w-[min(280px,_23%)]',
     content:
-      'transition-width flex w-[calc(100vw_-_60px)] grow flex-col lg:group-data-[open=true]:w-[max(calc(100vw_-_280px),_77%)]'
+      'flex w-[calc(100vw_-_60px)] grow flex-col transition-width lg:group-data-[open=true]:w-[max(calc(100vw_-_280px),_77%)]'
   }
 })
 
