@@ -1,7 +1,0 @@
-{
-  "build": {
-    "env": {
-      "PNPM_STORE_PATH": ".pnpm-store"
-    }
-  }
-}
