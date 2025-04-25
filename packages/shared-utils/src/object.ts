@@ -110,8 +110,8 @@ export function split<T>(
   chunkSize: number,
   { max = Infinity, defaultValue = 'undefined' }: SplitOptions = {}
 ) {
-  const result = []
-  const defaultChunk = defaultValue === 'emptyArray' ? [] : undefined
+  const result: (T[] | undefined)[] = []
+  const defaultChunk = defaultValue === 'emptyArray' ? ([] as T[]) : undefined
   let currentIndex = 0
 
   while (currentIndex < array.length && result.length < Math.min(array.length, max)) {

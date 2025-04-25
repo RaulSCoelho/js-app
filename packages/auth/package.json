@@ -2,8 +2,16 @@
   "name": "@js-app/auth",
   "version": "0.1.0",
   "private": true,
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@casl/ability": "^6.7.1",
+    "tsup": "^8.4.0",
+    "zod": "^3.22.4"
+  },
   "devDependencies": {
     "@js-app/eslint-config": "workspace:*",
     "@js-app/tsconfig": "workspace:*"
@@ -12,9 +20,5 @@
     "extends": [
       "@js-app/eslint-config/library"
     ]
-  },
-  "dependencies": {
-    "@casl/ability": "^6.7.1",
-    "zod": "^3.22.4"
   }
 }

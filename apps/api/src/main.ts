@@ -17,13 +17,14 @@ async function bootstrap() {
     .setTitle('JS App API')
     .setDescription('The JS App API description')
     .setVersion('1.0')
+    .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'access-token')
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document)
 
   await app.listen(PORT)
 
-  Logger.log(`🚀 API rodando em http://localhost:${PORT}`, 'Bootstrap')
+  Logger.log(`🚀 Application is running on: http://localhost:${PORT}`, 'Bootstrap')
 }
 
 bootstrap()

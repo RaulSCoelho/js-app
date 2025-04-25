@@ -5,6 +5,7 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'no-shadow-restricted-names': 'off',
+    '@typescript-eslint/no-unsafe-declaration-merging': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'simple-import-sort/imports': 'error',
     'prettier/prettier': [
