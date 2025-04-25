@@ -1,5 +1,6 @@
-import { MultiLangText } from '@/components/language'
 import Image from 'next/image'
+
+import { MultiLangText } from '@/components/language'
 
 import { pageTexts } from './consts'
 

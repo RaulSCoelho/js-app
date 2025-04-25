@@ -2,8 +2,6 @@
 
 import React from 'react'
 
-export type IconType = typeof Icon
-
 export type IconProps = React.ComponentPropsWithoutRef<
   React.ForwardRefExoticComponent<
     React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
@@ -43,3 +41,5 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(function Icon(
     ...(Array.isArray(children) ? children : [children])
   )
 })
+
+export type IconType = typeof Icon

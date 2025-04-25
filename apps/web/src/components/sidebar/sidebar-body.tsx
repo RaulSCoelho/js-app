@@ -1,8 +1,7 @@
 'use client'
 
-import { forwardRef } from 'react'
-
 import { tv } from '@heroui/react'
+import { forwardRef } from 'react'
 
 const sidebarBody = tv({
   base: 'flex grow flex-col overflow-y-auto overflow-x-hidden p-2.5'

@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import { isServer } from '@js-app/shared-utils'
+import { useEffect, useState } from 'react'
 
 import { useFirstRenderEffect } from './use-first-render-effect'
 

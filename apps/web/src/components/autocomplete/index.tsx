@@ -1,12 +1,11 @@
-import { forwardRef } from 'react'
-
 import {
   Autocomplete as HeroUIAutocomplete,
-  AutocompleteProps as HeroUIAutocompleteProps,
   AutocompleteItem,
-  AutocompleteItemProps as HeroUIAutocompleteItemProps
+  AutocompleteItemProps as HeroUIAutocompleteItemProps,
+  AutocompleteProps as HeroUIAutocompleteProps
 } from '@heroui/react'
 import { Key } from '@react-types/shared'
+import { forwardRef } from 'react'
 
 export type AutocompleteItemProps = Omit<HeroUIAutocompleteItemProps, 'children' | 'aria-label' | 'key'>
 

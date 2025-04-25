@@ -1,11 +1,11 @@
 'use client'
 
-import { ComponentPropsWithoutRef, forwardRef } from 'react'
-
-import { TRANSITION_VARIANTS } from '@/lib/transition-utils'
 import { tv, VariantProps } from '@heroui/react'
 import { MergeTypes } from '@js-app/shared-utils'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ComponentPropsWithoutRef, forwardRef } from 'react'
+
+import { TRANSITION_VARIANTS } from '@/lib/transition-utils'
 
 const collapse = tv({
   base: 'overflow-hidden'

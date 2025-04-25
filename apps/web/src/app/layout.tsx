@@ -1,8 +1,9 @@
 import './globals.css'
 
-import { generateMultiLangMetadata } from '@/components/language/multi-lang-text'
 import { Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+
+import { generateMultiLangMetadata } from '@/components/language/multi-lang-text'
 
 import { metadataTexts } from './consts'
 import { Providers } from './providers'

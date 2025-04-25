@@ -1,8 +1,7 @@
 'use client'
 
-import { forwardRef } from 'react'
-
 import { tv } from '@heroui/react'
+import { forwardRef } from 'react'
 
 const sidebarFooter = tv({
   base: 'flex w-full p-2.5 pt-0'

@@ -1,6 +1,5 @@
-import { forwardRef } from 'react'
-
 import { Button as NextUIButton, ButtonProps as NextUIButtonProps } from '@heroui/react'
+import { forwardRef } from 'react'
 
 export type ButtonProps = NextUIButtonProps
 

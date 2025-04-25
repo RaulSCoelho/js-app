@@ -11,33 +11,34 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@heroui/react": "^2.7.6",
-    "@hookform/resolvers": "^5.0.1",
-    "@js-app/auth": "workspace:^",
-    "@js-app/env": "workspace:^",
-    "@js-app/shared-utils": "workspace:^",
+    "@js-app/auth": "workspace:*",
+    "@js-app/env": "workspace:*",
+    "@js-app/shared-utils": "workspace:*",
     "@raulscoelho/tailwind-scrollbar": "^1.1.4",
     "framer-motion": "^12.7.4",
     "next": "15.3.1",
     "next-themes": "^0.4.6",
     "nookies": "^2.5.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.56.0",
-    "zod": "^3.22.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@js-app/eslint-config": "workspace:^",
-    "@js-app/typescript-config": "workspace:^",
+    "@js-app/eslint-config": "workspace:*",
+    "@js-app/tsconfig": "workspace:*",
+    "@react-types/shared": "^3.29.0",
     "@types/cookies": "^0.9.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.2",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@js-app/eslint-config/next"
+    ]
   }
 }

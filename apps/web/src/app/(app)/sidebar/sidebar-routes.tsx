@@ -1,24 +1,24 @@
 'use client'
 
+import {
+  BeakerIcon,
+  BookOpenIcon,
+  ChartBarIcon,
+  ClipboardDocumentListIcon,
+  CodeBracketIcon,
+  Cog6ToothIcon,
+  DocumentTextIcon,
+  EnvelopeIcon,
+  HomeIcon,
+  IdentificationIcon,
+  LifebuoyIcon,
+  UserIcon,
+  UsersIcon
+} from '@heroicons/react/24/outline'
 import { useMemo } from 'react'
 
 import { useLanguage } from '@/components/language'
 import { SidebarRoute, SidebarRouteProps } from '@/components/sidebar'
-import {
-  HomeIcon,
-  Cog6ToothIcon,
-  ChartBarIcon,
-  DocumentTextIcon,
-  LifebuoyIcon,
-  BookOpenIcon,
-  CodeBracketIcon,
-  BeakerIcon,
-  UsersIcon,
-  UserIcon,
-  IdentificationIcon,
-  EnvelopeIcon,
-  ClipboardDocumentListIcon
-} from '@heroicons/react/24/outline'
 
 import { appSidebarTexts } from './consts'
 

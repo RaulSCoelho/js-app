@@ -1,6 +1,5 @@
-import { useState } from 'react'
-
 import { FromPromise } from '@js-app/shared-utils'
+import { useState } from 'react'
 
 export function useIsLoading<T extends any[], R>(fn: (...args: T) => R) {
   const [isLoading, setIsLoading] = useState(false)

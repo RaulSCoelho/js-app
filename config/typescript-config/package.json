@@ -1,5 +1,5 @@
 {
-  "name": "@js-app/typescript-config",
+  "name": "@js-app/tsconfig",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",

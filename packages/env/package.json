@@ -6,12 +6,12 @@
   "types": "index.ts",
   "devDependencies": {
     "@js-app/eslint-config": "workspace:*",
-    "@js-app/typescript-config": "workspace:*",
+    "@js-app/tsconfig": "workspace:*",
     "@types/node": "^20.12.6"
   },
   "eslintConfig": {
     "extends": [
-      "@js-app/eslint-config/next"
+      "@js-app/eslint-config/library"
     ]
   },
   "dependencies": {

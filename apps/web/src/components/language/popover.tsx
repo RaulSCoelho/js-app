@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-
 import { Avatar, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@heroui/react'
+import { useState } from 'react'
 
 import { Button } from '../button'
 import { languages } from './consts'

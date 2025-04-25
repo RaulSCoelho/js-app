@@ -1,5 +1,6 @@
-import { cookies } from '@/lib/cookies'
 import { Metadata } from 'next'
+
+import { cookies } from '@/lib/cookies'
 
 import { Language, LanguageText, SupportedLanguage, SupportedLanguageText } from './types'
 
@@ -41,7 +42,7 @@ export async function generateMultiLangMetadata({
   if (template) {
     metadata.title = {
       default: multiLangText(title, { lang: saved }),
-      template: template
+      template
     }
   }
 

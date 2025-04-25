@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { IconProps, Icon } from '.'
+import { Icon, IconProps } from '.'
 
 export const SidebarIcon = React.forwardRef<SVGSVGElement, IconProps>(function SidebarIcon(props, ref) {
   return (

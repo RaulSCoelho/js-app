@@ -1,6 +1,5 @@
-import { forwardRef } from 'react'
-
 import { Textarea as NextUITextarea, TextAreaProps as NextUITextAreaProps } from '@heroui/react'
+import { forwardRef } from 'react'
 
 export type TextAreaProps = NextUITextAreaProps
 
