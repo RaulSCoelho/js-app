@@ -35,6 +35,22 @@ export class UsersService {
     return user
   }
 
+  async findAll() {
+    const users = await this.readUsers()
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return users.map(({ password, ...user }) => user)
+  }
+
+  async findOne(id: number) {
+    const users = await this.readUsers()
+    const user = users.find(u => u.id === id)
+    if (!user) throw new NotFoundException('User not found')
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user
+    return userWithoutPassword
+  }
+
   async register(body: RegisterDto) {
     const users = await this.readUsers()
     const hashedPassword = await bcrypt.hash(body.password, 10)
@@ -48,7 +64,9 @@ export class UsersService {
     users.push(newUser)
     await this.writeUsers(users)
 
-    return { id: newUser.id, username: newUser.username }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = newUser
+    return userWithoutPassword
   }
 
   async update(id: number, body: UpdateDto) {
@@ -58,7 +76,7 @@ export class UsersService {
 
     if (body.password) {
       const hashedPassword = await bcrypt.hash(body.password, 10)
-      user.password = hashedPassword
+      body.password = hashedPassword
     }
 
     if (body.username) {
@@ -66,16 +84,14 @@ export class UsersService {
       if (existingUser && existingUser.id !== id) {
         throw new NotFoundException('Username already exists')
       }
-      user.username = body.username
     }
 
-    if (body.role) {
-      user.role = body.role
-    }
-
+    Object.assign(user, body)
     await this.writeUsers(users)
 
-    return { id: user.id, username: user.username }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user
+    return userWithoutPassword
   }
 
   async remove(id: number) {
