@@ -1,8 +1,13 @@
-import { string } from '@js-app/shared-utils'
+import { roleSchema } from '@js-app/auth'
 import { z } from 'zod'
 
-export const RegisterSchema = z.object({
-  username: string({ name: 'Username', min: 1 }),
-  password: string({ name: 'Password', min: 1 })
+import { passwordSchema, usernameSchema } from './user'
+
+export const registerSchema = z.object({
+  username: usernameSchema,
+  password: passwordSchema,
+  role: roleSchema
 })
-RegisterSchema._def.name = 'RegisterSchema'
+registerSchema._def.name = 'RegisterSchema'
+
+export type RegisterPayload = z.infer<typeof registerSchema>

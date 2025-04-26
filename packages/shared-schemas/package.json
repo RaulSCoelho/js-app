@@ -9,7 +9,7 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@js-app/shared-utils": "workspace:*",
+    "@js-app/auth": "workspace:^",
     "tsup": "^8.4.0",
     "zod": "^3.22.4"
   },

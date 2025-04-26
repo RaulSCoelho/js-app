@@ -1,8 +1,11 @@
-import { string } from '@js-app/shared-utils'
 import { z } from 'zod'
 
-export const LoginSchema = z.object({
-  username: string({ name: 'Username', min: 1 }),
-  password: string({ name: 'Password', min: 1 })
+import { passwordSchema, usernameSchema } from '../users'
+
+export const loginSchema = z.object({
+  username: usernameSchema,
+  password: passwordSchema
 })
-LoginSchema._def.name = 'LoginSchema'
+loginSchema._def.name = 'LoginSchema'
+
+export type LoginPayload = z.infer<typeof loginSchema>

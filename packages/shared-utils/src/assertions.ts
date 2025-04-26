@@ -8,6 +8,7 @@ export const isArray = <T = any>(value: any): value is T[] => !isNullOrEmpty(val
 
 export const isObject = <T = Record<any, any>>(value: any): value is T => typeof value === 'object' && !isArray(value)
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const isFunction = <T extends Function = Function>(value: any): value is T => typeof value === 'function'
 
 export const isNumeric = <T extends number | string = string>(value?: any): value is T =>

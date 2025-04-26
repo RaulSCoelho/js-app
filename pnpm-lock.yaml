@@ -272,9 +272,9 @@ importers:
 
   packages/shared-schemas:
     dependencies:
-      '@js-app/shared-utils':
-        specifier: workspace:*
-        version: link:../shared-utils
+      '@js-app/auth':
+        specifier: workspace:^
+        version: link:../auth
       tsup:
         specifier: ^8.4.0
         version: 8.4.0
@@ -297,9 +297,6 @@ importers:
       tsup:
         specifier: ^8.4.0
         version: 8.4.0
-      zod:
-        specifier: ^3.22.4
-        version: 3.24.3
     devDependencies:
       '@js-app/eslint-config':
         specifier: workspace:*

@@ -4,6 +4,9 @@ import * as bcrypt from 'bcryptjs'
 import { promises as fs } from 'fs'
 import * as path from 'path'
 
+import { RegisterDto } from './dtos/register.dto'
+import { UpdateDto } from './dtos/update.dto'
+
 const USERS_PATH = path.resolve(__dirname, 'users.json').replace('dist', 'src')
 
 @Injectable()
@@ -21,12 +24,24 @@ export class UsersService {
     return users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1
   }
 
-  async register(username: string, password: string) {
+  async validateUser(username: string, password: string) {
     const users = await this.readUsers()
-    const hashedPassword = await bcrypt.hash(password, 10)
+    const user = users.find(u => u.username === username)
+    if (!user) return null
+
+    const match = await bcrypt.compare(password, user.password)
+    if (!match) return null
+
+    return user
+  }
+
+  async register(body: RegisterDto) {
+    const users = await this.readUsers()
+    const hashedPassword = await bcrypt.hash(body.password, 10)
     const newUser: UserWithPassword = {
       id: await this.getNextId(users),
-      username,
+      username: body.username,
+      role: body.role,
       password: hashedPassword
     }
 
@@ -36,29 +51,34 @@ export class UsersService {
     return { id: newUser.id, username: newUser.username }
   }
 
-  async validateUser(username: string, password: string) {
-    const users = await this.readUsers()
-    const user = users.find(u => u.username === username)
-    if (!user) return null
-
-    const match = await bcrypt.compare(password, user.password)
-    if (!match) return null
-
-    return { id: user.id, username: user.username }
-  }
-
-  async updateUser(id: number, newUsername: string) {
+  async update(id: number, body: UpdateDto) {
     const users = await this.readUsers()
     const user = users.find(u => u.id === id)
     if (!user) throw new NotFoundException('User not found')
 
-    user.username = newUsername
+    if (body.password) {
+      const hashedPassword = await bcrypt.hash(body.password, 10)
+      user.password = hashedPassword
+    }
+
+    if (body.username) {
+      const existingUser = users.find(u => u.username === body.username)
+      if (existingUser && existingUser.id !== id) {
+        throw new NotFoundException('Username already exists')
+      }
+      user.username = body.username
+    }
+
+    if (body.role) {
+      user.role = body.role
+    }
+
     await this.writeUsers(users)
 
     return { id: user.id, username: user.username }
   }
 
-  async deleteUser(id: number) {
+  async remove(id: number) {
     const users = await this.readUsers()
     const index = users.findIndex(u => u.id === id)
     if (index === -1) throw new NotFoundException('User not found')

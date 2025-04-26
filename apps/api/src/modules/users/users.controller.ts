@@ -4,6 +4,7 @@ import { ApiBearerAuth } from '@nestjs/swagger'
 import { Public } from '@/decorators/is-public'
 
 import { RegisterDto } from './dtos/register.dto'
+import { UpdateDto } from './dtos/update.dto'
 import { UsersService } from './users.service'
 
 @Controller('users')
@@ -14,16 +15,16 @@ export class UsersController {
   @Post('register')
   @Public()
   register(@Body() body: RegisterDto) {
-    return this.usersService.register(body.username, body.password)
+    return this.usersService.register(body)
   }
 
   @Patch(':id')
-  updateUser(@Param('id') id: string, @Body() body: { username: string }) {
-    return this.usersService.updateUser(+id, body.username)
+  updateUser(@Param('id') id: string, @Body() body: UpdateDto) {
+    return this.usersService.update(+id, body)
   }
 
   @Delete(':id')
   deleteUser(@Param('id') id: string) {
-    return this.usersService.deleteUser(+id)
+    return this.usersService.remove(+id)
   }
 }
