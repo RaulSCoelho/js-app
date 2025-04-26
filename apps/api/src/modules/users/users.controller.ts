@@ -1,8 +1,8 @@
-import { RegisterDto } from '@js-app/shared-schemas'
 import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common'
 
 import { Public } from '@/decorators/is-public'
 
+import { RegisterDto } from './dtos/register.dto'
 import { UsersService } from './users.service'
 
 @Controller('users')

@@ -1,4 +1,3 @@
-import { LoginDto } from '@js-app/shared-schemas'
 import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiBody } from '@nestjs/swagger'
 import { FastifyRequest } from 'fastify'
@@ -6,6 +5,7 @@ import { FastifyRequest } from 'fastify'
 import { Public } from '@/decorators/is-public'
 
 import { AuthService } from './auth.service'
+import { LoginDto } from './dtos/login.dto'
 import { LocalAuthGuard } from './local-auth.guard'
 
 @Controller('auth')

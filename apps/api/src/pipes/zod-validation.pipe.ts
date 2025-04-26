@@ -1,6 +1,7 @@
-import { validate } from '@js-app/shared-schemas'
 import { ArgumentMetadata, PipeTransform } from '@nestjs/common'
 import { ZodSchema } from 'zod'
+
+import { validate } from '@/lib/zod/create-zod-dto'
 
 export class ZodValidationPipe implements PipeTransform {
   // Optionally, a schema can be passed in the constructor.

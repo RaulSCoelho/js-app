@@ -9,8 +9,6 @@
   },
   "dependencies": {
     "@js-app/shared-utils": "workspace:*",
-    "@nestjs/common": "^11.0.1",
-    "@nestjs/swagger": "^11.1.5",
     "tsup": "^8.4.0",
     "zod": "^3.22.4"
   },
