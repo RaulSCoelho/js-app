@@ -69,7 +69,7 @@ js-app/
 
 ### Prerequisites
 - **Node.js** ≥ 22
-- **pnpm** ≥ 10.9.0
+- **pnpm** ≥ 9.3.0
 
 ### Installation
 ```bash
