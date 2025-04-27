@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 
+import { getUserById } from '@/db'
+
 export interface JwtPayload {
   id: number
   username: string
@@ -18,6 +20,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    return { id: payload.id, username: payload.username }
+    return await getUserById(payload.id)
   }
 }

@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common'
 import { ApiBearerAuth } from '@nestjs/swagger'
+import { FastifyRequest } from 'fastify'
 
+import { casl } from '@/decorators/casl'
 import { Public } from '@/decorators/is-public'
 
 import { RegisterDto } from './dtos/register.dto'
@@ -29,12 +31,22 @@ export class UsersController {
   }
 
   @Patch(':id')
-  updateUser(@Param('id') id: string, @Body() body: UpdateDto) {
+  updateUser(@Req() req: FastifyRequest, @Param('id') id: string, @Body() body: UpdateDto) {
+    casl(req, {
+      action: 'update',
+      subject: { __typename: 'User', id: +id, role: 'MEMBER' },
+      message: 'You are not authorized to update this user'
+    })
     return this.usersService.update(+id, body)
   }
 
   @Delete(':id')
-  deleteUser(@Param('id') id: string) {
+  deleteUser(@Req() req: FastifyRequest, @Param('id') id: string) {
+    casl(req, {
+      action: 'delete',
+      subject: { __typename: 'User', id: +id, role: 'MEMBER' },
+      message: 'You are not authorized to delete this user'
+    })
     return this.usersService.remove(+id)
   }
 }

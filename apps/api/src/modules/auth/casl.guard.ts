@@ -1,9 +1,8 @@
-import { getUserPermissions } from '@js-app/auth'
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common'
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { FastifyRequest } from 'fastify'
 
-import { CASL, RequiredRule } from '@/decorators/casl'
+import { CASL, casl, RequiredRule } from '@/decorators/casl'
 
 @Injectable()
 export class CaslGuard implements CanActivate {
@@ -18,22 +17,7 @@ export class CaslGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest<FastifyRequest>()
-    const user = request.user
 
-    if (!request.user) {
-      return false
-    }
-
-    const ability = getUserPermissions(user.id, user.role)
-
-    if (rules.every(rule => ability.can(rule.action, rule.subject as any))) {
-      return true
-    }
-
-    const message =
-      rules.find(rule => rule.message)?.message ??
-      `You are not authorized to ${rules.map(rule => `${rule.action} ${rule.subject.toString().toLowerCase()}`).join(', ')}`
-
-    throw new UnauthorizedException(message)
+    return casl(request, ...rules)
   }
 }
