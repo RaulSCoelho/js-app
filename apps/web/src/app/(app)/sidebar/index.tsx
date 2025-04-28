@@ -8,7 +8,7 @@ import { AppSidebarRoutes } from './sidebar-routes'
 
 export function AppSidebar({ children }: { children: React.ReactNode }) {
   return (
-    <Sidebar content={children} className="bg-default-100">
+    <Sidebar content={children} classNames={{ sidebar: 'bg-default-100', base: 'bg-default-50' }}>
       <Sidebar.Header>
         <SidebarToggle />
       </Sidebar.Header>

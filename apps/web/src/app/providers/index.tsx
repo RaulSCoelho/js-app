@@ -6,6 +6,8 @@ import { ThemeProvider } from 'next-themes'
 
 import { LanguageProvider } from '@/components/language'
 
+import { UserProvider } from './user-provider'
+
 declare module '@react-types/shared' {
   interface RouterConfig {
     routerOptions: NonNullable<Parameters<ReturnType<typeof useRouter>['push']>[1]>
@@ -16,10 +18,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   return (
     <LanguageProvider>
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
         <HeroUIProvider navigate={router.push}>
+          <UserProvider>{children}</UserProvider>
           <ToastProvider />
-          {children}
         </HeroUIProvider>
       </ThemeProvider>
     </LanguageProvider>

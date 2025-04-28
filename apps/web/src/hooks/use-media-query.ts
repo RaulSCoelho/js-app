@@ -3,8 +3,6 @@
 import { isServer } from '@js-app/shared-utils'
 import { useEffect, useState } from 'react'
 
-import { useFirstRenderEffect } from './use-first-render-effect'
-
 const sizes = {
   sm: 640,
   md: 768,
@@ -49,7 +47,7 @@ export function useMediaQuery({ size = 0 }: UseMediaQueryProps = { size: 0 }): U
     height: isServer ? 0 : window.innerHeight
   })
 
-  useFirstRenderEffect(() => {
+  useEffect(() => {
     function handleSystemThemeChange(e: MediaQueryListEvent) {
       setSystemTheme(e.matches ? 'dark' : 'light')
     }
@@ -69,7 +67,7 @@ export function useMediaQuery({ size = 0 }: UseMediaQueryProps = { size: 0 }): U
       isSystemDarkMQ.removeEventListener('change', handleSystemThemeChange)
       window.removeEventListener('resize', handleResize)
     }
-  })
+  }, [])
 
   useEffect(() => {
     const screenSize = typeof size === 'number' ? size : sizes[size]
