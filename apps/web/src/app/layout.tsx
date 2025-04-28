@@ -5,8 +5,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import { generateMultiLangMetadata } from '@/components/language/multi-lang-text'
 
+import { Providers } from './_providers'
 import { metadataTexts } from './consts'
-import { Providers } from './providers'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
