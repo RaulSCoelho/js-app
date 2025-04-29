@@ -11,9 +11,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter())
 
   app.enableCors({ origin: CORS_ORIGINS, credentials: true })
-
-  Logger.log(`CORS origins: ${CORS_ORIGINS}`, 'Bootstrap')
-
   app.useGlobalPipes(new ZodValidationPipe())
 
   const config = new DocumentBuilder()
@@ -27,7 +24,8 @@ async function bootstrap() {
 
   await app.listen(PORT, '0.0.0.0')
 
-  Logger.log(`🚀 Application is running on: ${await app.getUrl()}`, 'Bootstrap')
+  Logger.log(`🌐 CORS Origins: ${CORS_ORIGINS}`, 'Bootstrap')
+  Logger.log(`🚀 Server is up and running at: ${await app.getUrl()}`, 'Bootstrap')
 }
 
 bootstrap()
