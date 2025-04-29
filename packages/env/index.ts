@@ -13,6 +13,7 @@ const client = z.object({
 const processEnv = {
   PORT: process.env.PORT,
   NODE_ENV: process.env.NODE_ENV,
+  CORS_ORIGINS: process.env.CORS_ORIGINS,
   NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
 }
 
