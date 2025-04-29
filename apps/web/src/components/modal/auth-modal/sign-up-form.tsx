@@ -32,7 +32,7 @@ export function SignUpForm({ children, onSuccess }: { children: React.ReactNode;
   }
 
   return (
-    <Form form={form} className="flex flex-col gap-4 p-6 pt-0" onSubmit={onSubmit}>
+    <Form form={form} className="flex flex-col gap-4 p-6 pt-0" autoComplete="off" onSubmit={onSubmit}>
       <Input
         label={multiLangText(authModalTexts.usernameLabel)}
         placeholder={multiLangText(authModalTexts.usernamePlaceholder)}
@@ -43,6 +43,7 @@ export function SignUpForm({ children, onSuccess }: { children: React.ReactNode;
         label={multiLangText(authModalTexts.passwordLabel)}
         placeholder={multiLangText(authModalTexts.passwordPlaceholder)}
         errorMessage={form.formState.errors.password?.message}
+        autoComplete="new-password"
         {...form.register('password')}
       />
 
