@@ -10,6 +10,7 @@ import { useIsMounted } from '@/hooks/use-is-mounted'
 import { getUser } from '@/http/auth-get-user'
 import { SignInRequest } from '@/http/sign-in'
 import { SignUpRequest } from '@/http/sign-up'
+import { cookies } from '@/lib/cookies'
 import { FieldErrorsShape } from '@/lib/is-field-errors-shape'
 
 export interface UserContextProps {
@@ -32,6 +33,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>()
 
   const isMounted = useIsMounted(async () => {
+    if (!cookies.get('token')) return
     try {
       const response = await getUser()
       setUser(response)

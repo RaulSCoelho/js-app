@@ -24,7 +24,7 @@ async function bootstrap() {
 
   await app.listen(PORT)
 
-  Logger.log(`🚀 Application is running on: http://localhost:${PORT}`, 'Bootstrap')
+  Logger.log(`🚀 Application is running on: ${await app.getUrl()}`, 'Bootstrap')
 }
 
 bootstrap()
