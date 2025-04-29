@@ -4,7 +4,7 @@ import { destroyCookie, parseCookies, setCookie } from 'nookies'
 
 import { getServerCookies } from './server'
 
-export type Cookie = LiteralUnion<'access-token' | 'preferred-language', string>
+export type Cookie = LiteralUnion<'token' | 'preferred-language', string>
 export type CookieOptions = CookieAttr
 export type RequestCookie<T> = {
   name: Cookie

@@ -9,7 +9,7 @@ import { LoginDto } from './dtos/login.dto'
 import { LocalAuthGuard } from './local-auth.guard'
 
 @Controller('auth')
-@ApiBearerAuth('access-token')
+@ApiBearerAuth('token')
 export class AuthController {
   constructor(private authService: AuthService) {}
 

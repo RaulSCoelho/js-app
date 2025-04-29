@@ -17,7 +17,7 @@ async function bootstrap() {
     .setTitle('JS App API')
     .setDescription('The JS App API description')
     .setVersion('1.0')
-    .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'access-token')
+    .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'token')
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document)

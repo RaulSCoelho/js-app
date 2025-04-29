@@ -10,7 +10,7 @@ import { UpdateDto } from './dtos/update.dto'
 import { UsersService } from './users.service'
 
 @Controller('users')
-@ApiBearerAuth('access-token')
+@ApiBearerAuth('token')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { Textarea as NextUITextarea, TextAreaProps as NextUITextAreaProps } from '@heroui/react'
 import { forwardRef } from 'react'
 

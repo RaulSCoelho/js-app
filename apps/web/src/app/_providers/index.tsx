@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ThemeProvider } from 'next-themes'
 
 import { LanguageProvider } from '@/components/language'
+import { ConfirmationModal } from '@/components/modal'
 
 import { UserProvider } from './user-provider'
 
@@ -21,6 +22,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
         <HeroUIProvider navigate={router.push}>
           <UserProvider>{children}</UserProvider>
+          <ConfirmationModal />
           <ToastProvider />
         </HeroUIProvider>
       </ThemeProvider>

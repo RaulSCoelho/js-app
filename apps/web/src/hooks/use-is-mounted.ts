@@ -1,3 +1,5 @@
+'use client'
+
 import { MaybePromise, maybePromise } from '@js-app/shared-utils'
 import { useEffect, useState } from 'react'
 

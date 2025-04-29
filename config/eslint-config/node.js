@@ -4,6 +4,7 @@ module.exports = {
   plugins: ['simple-import-sort'],
   rules: {
     camelcase: 'off',
+    'no-case-declarations': 'off',
     'no-useless-constructor': 'off',
     'no-shadow-restricted-names': 'off',
     '@typescript-eslint/no-unsafe-declaration-merging': 'off',

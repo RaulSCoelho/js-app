@@ -1,3 +1,5 @@
+'use client'
+
 import { Button as NextUIButton, ButtonProps as NextUIButtonProps } from '@heroui/react'
 import { forwardRef } from 'react'
 
