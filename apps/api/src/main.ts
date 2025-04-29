@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-import { CORS_ORIGINS, PORT } from './config/app'
+import { CORS_ORIGINS, ENV, PORT } from './config/app'
 import { AppModule } from './modules/app.module'
 import { ZodValidationPipe } from './pipes/zod-validation.pipe'
 
@@ -24,7 +24,8 @@ async function bootstrap() {
 
   await app.listen(PORT, '0.0.0.0')
 
-  Logger.log(`🌐 CORS Origins: ${CORS_ORIGINS}`, 'Bootstrap')
+  Logger.log(`📦 Environment: ${ENV}`, 'Bootstrap')
+  Logger.log(`🌐 Allowed CORS Origins: ${CORS_ORIGINS}`, 'Bootstrap')
   Logger.log(`🚀 Server is up and running at: ${await app.getUrl()}`, 'Bootstrap')
 }
 
