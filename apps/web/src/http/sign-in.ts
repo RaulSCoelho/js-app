@@ -2,9 +2,9 @@ import { LoginPayload } from '@js-app/shared-schemas'
 
 import { api } from './api-client'
 
-interface SignInRequest extends LoginPayload {}
+export interface SignInRequest extends LoginPayload {}
 
-interface SignInResponse {
+export interface SignInResponse {
   token: string
 }
 

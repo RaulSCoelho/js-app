@@ -18,14 +18,16 @@ declare module '@react-types/shared' {
 export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   return (
-    <LanguageProvider>
-      <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-        <HeroUIProvider navigate={router.push}>
-          <UserProvider>{children}</UserProvider>
-          <ConfirmationModal />
-          <ToastProvider />
-        </HeroUIProvider>
-      </ThemeProvider>
-    </LanguageProvider>
+    <UserProvider>
+      <LanguageProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <HeroUIProvider navigate={router.push}>
+            {children}
+            <ConfirmationModal />
+            <ToastProvider />
+          </HeroUIProvider>
+        </ThemeProvider>
+      </LanguageProvider>
+    </UserProvider>
   )
 }

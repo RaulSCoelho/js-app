@@ -3,19 +3,26 @@
 import { User } from '@js-app/shared-schemas'
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react'
 
+import { signInAction } from '@/actions/sign-in'
+import { signOutAction } from '@/actions/sign-out'
+import { signUpAction } from '@/actions/sign-up'
 import { useIsMounted } from '@/hooks/use-is-mounted'
 import { getUser } from '@/http/auth-get-user'
-import { signIn } from '@/http/sign-in'
-import { signUp } from '@/http/sign-up'
-import { cookies } from '@/lib/cookies'
+import { SignInRequest } from '@/http/sign-in'
+import { SignUpRequest } from '@/http/sign-up'
+import { FieldErrorsShape } from '@/lib/is-field-errors-shape'
 
 export interface UserContextProps {
   user?: User
   isAuthenticated: boolean
   isAdmin: boolean
   isLoading: boolean
-  signIn: typeof signIn
-  signUp: typeof signUp
+  signIn: (
+    payload: SignInRequest
+  ) => Promise<{ user: User; errors: undefined } | (FieldErrorsShape & { user: undefined })>
+  signUp: (
+    payload: SignUpRequest
+  ) => Promise<{ user: User; errors: undefined } | (FieldErrorsShape & { user: undefined })>
   signOut: () => Promise<void>
 }
 
@@ -31,22 +38,26 @@ export function UserProvider({ children }: { children: ReactNode }) {
     } catch {}
   })
 
-  const handleSignIn: typeof signIn = useCallback(async payload => {
-    const response = await signIn(payload)
-    cookies.set('token', response.token)
-    const userResponse = await getUser()
-    setUser(userResponse)
-    return response
+  const handleSignIn = useCallback(async (payload: SignInRequest) => {
+    const response = await signInAction(payload)
+    if (response.user) {
+      setUser(response.user)
+      return { user: response.user }
+    }
+    return { errors: response.errors }
   }, [])
 
-  const handleSignUp: typeof signUp = useCallback(async payload => {
-    const user = await signUp(payload)
-    await handleSignIn({ username: user.username, password: payload.password })
-    return user
+  const handleSignUp = useCallback(async (payload: SignUpRequest) => {
+    const response = await signUpAction(payload)
+    if (response.user) {
+      setUser(response.user)
+      return { user: response.user }
+    }
+    return { errors: response.errors }
   }, [])
 
   const handleSignOut = useCallback(async () => {
-    cookies.delete('token')
+    await signOutAction()
     setUser(undefined)
   }, [])
 

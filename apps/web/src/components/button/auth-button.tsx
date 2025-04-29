@@ -9,7 +9,7 @@ import { MultiLangText } from '../language'
 import { AuthModal } from '../modal'
 import { Button, ButtonProps } from './button'
 
-export type AuthButtonProps = ButtonProps
+export type AuthButtonProps = Omit<ButtonProps, 'isLoading'>
 
 export const authButtonTexts = {
   signIn: {
@@ -32,12 +32,16 @@ export const AuthButton = forwardRef<HTMLButtonElement, ButtonProps>(function Au
   { children, color = 'default', onPress, ...rest },
   ref
 ) {
-  const { user, signOut } = useUser()
+  const { user, signOut, isLoading } = useUser()
   const [isOpen, setIsOpen] = useState(false)
+  const [isSigningOut, setIsSigningOut] = useState(false)
 
-  function handlePress(e: PressEvent) {
+  async function handlePress(e: PressEvent) {
+    if (isLoading) return
     if (user) {
-      signOut()
+      setIsSigningOut(true)
+      await signOut()
+      setIsSigningOut(false)
     } else {
       setIsOpen(true)
     }
@@ -46,8 +50,10 @@ export const AuthButton = forwardRef<HTMLButtonElement, ButtonProps>(function Au
 
   return (
     <>
-      <Button ref={ref} color={color} onPress={handlePress} {...rest}>
-        {children ?? <MultiLangText texts={user ? authButtonTexts.signOut : authButtonTexts.signIn} />}
+      <Button ref={ref} color={color} onPress={handlePress} isLoading={isSigningOut || isLoading} {...rest}>
+        {isLoading
+          ? null
+          : (children ?? <MultiLangText texts={user ? authButtonTexts.signOut : authButtonTexts.signIn} />)}
       </Button>
       <AuthModal isOpen={isOpen} onOpenChange={setIsOpen} />
     </>

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { ConflictException, Injectable } from '@nestjs/common'
 import * as bcrypt from 'bcryptjs'
 
 import { deleteUser, getNextUserId, getUser, getUsers, saveUser } from '@/db/users'
@@ -34,6 +34,11 @@ export class UsersService {
   }
 
   async register(body: RegisterDto) {
+    const existingUser = await getUser('username', body.username, false)
+    if (existingUser) {
+      throw new ConflictException({ errors: { username: ['Username already exists'] } })
+    }
+
     const hashedPassword = await bcrypt.hash(body.password, 10)
 
     const newUser = await saveUser({
@@ -59,7 +64,7 @@ export class UsersService {
     if (body.username) {
       const existingUser = await getUser('username', body.username, false)
       if (existingUser && existingUser.id !== id) {
-        throw new NotFoundException('Username already exists')
+        throw new ConflictException({ errors: { username: ['Username already exists'] } })
       }
     }
 

@@ -45,7 +45,6 @@ export const Dropdown = forwardRef(function Dropdown<T extends Record<string, an
     selectedKeys,
     disabledKeys,
     onSelectionChange,
-    portalContainer = document.getElementById('root') as Element,
     renderItem,
     triggerProps = {},
     menuProps = {},
@@ -59,7 +58,7 @@ export const Dropdown = forwardRef(function Dropdown<T extends Record<string, an
   }
 
   return (
-    <HeroUIDropdown ref={ref} portalContainer={portalContainer} {...props}>
+    <HeroUIDropdown ref={ref} {...props}>
       <DropdownTrigger {...triggerProps}>{children}</DropdownTrigger>
       <DropdownMenu
         selectionMode={selectionMode}

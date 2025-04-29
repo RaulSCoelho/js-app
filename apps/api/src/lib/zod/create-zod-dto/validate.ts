@@ -6,7 +6,7 @@ export function validate<T extends ZodType<any, any>>(schema: T, data: any): T['
 
   if (!result.success) {
     // Map errors into a user-friendly format.
-    const errors = result.error.errors.map(err => ({ path: err.path.join('.') || 'root', message: err.message }))
+    const { fieldErrors: errors } = result.error.flatten()
     throw new BadRequestException({ message: 'Validation failed', errors })
   }
 

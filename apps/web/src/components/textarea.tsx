@@ -1,19 +1,10 @@
 'use client'
 
-import { Textarea as NextUITextarea, TextAreaProps as NextUITextAreaProps } from '@heroui/react'
+import { Textarea as HeroUITextarea, TextAreaProps as HeroUITextAreaProps } from '@heroui/react'
 import { forwardRef } from 'react'
 
-export type TextAreaProps = NextUITextAreaProps
+export type TextAreaProps = HeroUITextAreaProps
 
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function Textarea(
-  { isInvalid, minRows = 1, style = {}, ...rest },
-  ref
-) {
-  if (!style.height) {
-    style.height = `${minRows * 24}px`
-  }
-
-  return (
-    <NextUITextarea ref={ref} minRows={minRows} style={style} isInvalid={isInvalid ?? !!rest.errorMessage} {...rest} />
-  )
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function Textarea({ isInvalid, ...rest }, ref) {
+  return <HeroUITextarea ref={ref} isInvalid={isInvalid ?? !!rest.errorMessage} {...rest} />
 })
