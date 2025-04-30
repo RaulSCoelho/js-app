@@ -312,9 +312,6 @@ importers:
       '@js-app/auth':
         specifier: workspace:*
         version: link:../auth
-      '@js-app/i18n':
-        specifier: workspace:*
-        version: link:../i18n
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(@swc/core@1.11.22)(jiti@1.21.7)(postcss@8.5.3)(typescript@5.8.3)(yaml@2.7.1)

@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@js-app/auth": "workspace:*",
-    "@js-app/i18n": "workspace:*",
     "tsup": "^8.4.0",
     "zod": "^3.22.4"
   },
