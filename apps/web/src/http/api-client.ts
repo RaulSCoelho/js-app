@@ -10,6 +10,11 @@ export const api = ky.create({
       async request => {
         const [serverCookies] = await cookies.server()
         const token = serverCookies.get('token')
+        const lang = serverCookies.get('preferred-language')
+
+        if (lang) {
+          request.headers.set('x-language', lang)
+        }
 
         if (token) {
           request.headers.set('Authorization', `Bearer ${token}`)
