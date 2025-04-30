@@ -1,12 +1,12 @@
 'use client'
 
+import { LanguageText, SupportedLanguage } from '@js-app/i18n'
 import { useCallback, useEffect, useState } from 'react'
 
 import { cookies } from '@/lib/cookies'
 
 import { LanguageContext } from './context'
 import { multiLangText as originalMultiLangText } from './multi-lang-text'
-import { LanguageText, SupportedLanguage } from './types'
 
 const supportedLanguages: SupportedLanguage[] = ['en', 'es', 'fr', 'de', 'pt-BR']
 

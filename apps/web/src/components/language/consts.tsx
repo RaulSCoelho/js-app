@@ -1,9 +1,9 @@
 'use client'
 
 import { Avatar } from '@heroui/react'
+import { SupportedLanguage } from '@js-app/i18n'
 
 import { AutocompleteItemProps } from '../autocomplete'
-import { SupportedLanguage } from './types'
 
 export const languages: {
   code: string

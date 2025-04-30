@@ -1,7 +1,7 @@
 export type SupportedLanguage = 'en' | 'es' | 'fr' | 'de' | 'pt-BR'
 
 export type SupportedLanguageText = {
-  [key in SupportedLanguage]?: string
+  [key in SupportedLanguage]: string
 }
 
 export type Language =

@@ -1,7 +1,8 @@
 'use client'
 
+import { Language, LanguageText } from '@js-app/i18n'
+
 import { multiLangText } from './multi-lang-text'
-import { Language, LanguageText } from './types'
 import { useLanguage } from './use-language'
 
 export interface MultiLangTextProps {

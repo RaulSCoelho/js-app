@@ -1,11 +1,11 @@
 'use client'
 
 import { Avatar, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@heroui/react'
+import { SupportedLanguage } from '@js-app/i18n'
 import { useState } from 'react'
 
 import { Button } from '../button'
 import { languages } from './consts'
-import { SupportedLanguage } from './types'
 import { useLanguage } from './use-language'
 
 export function LanguagePopover() {

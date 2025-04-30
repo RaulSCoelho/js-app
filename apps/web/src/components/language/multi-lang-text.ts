@@ -1,22 +1,17 @@
+import {
+  LanguageText,
+  multiLangText as originalMultiLangText,
+  MultiLangTextOptions,
+  SupportedLanguage,
+  SupportedLanguageText
+} from '@js-app/i18n'
 import { Metadata } from 'next'
 
 import { cookies } from '@/lib/cookies'
 
-import { Language, LanguageText, SupportedLanguage, SupportedLanguageText } from './types'
-
-export interface MultiLangTextOptions {
-  fallbackLang?: Language
-  lang?: Language
-}
-
 export function multiLangText(texts: LanguageText, options: MultiLangTextOptions = {}) {
-  const { fallbackLang = 'en', lang = cookies.get<SupportedLanguage>('preferred-language')! } = options
-
-  if (texts[lang]) {
-    return texts[lang]
-  }
-
-  return texts[fallbackLang] || Object.values(texts)[0]
+  const { fallbackLang = 'en', lang = cookies.get<SupportedLanguage>('preferred-language') } = options
+  return originalMultiLangText(texts, { fallbackLang, lang })
 }
 
 export interface GenerateMultiLangMetadataProps extends Omit<Metadata, 'title' | 'description'> {

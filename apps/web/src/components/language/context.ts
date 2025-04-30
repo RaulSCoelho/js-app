@@ -1,8 +1,7 @@
 'use client'
 
+import { LanguageText, SupportedLanguage } from '@js-app/i18n'
 import { createContext } from 'react'
-
-import { LanguageText, SupportedLanguage } from './types'
 
 export interface LanguageContextType {
   language: SupportedLanguage

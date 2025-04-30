@@ -18,7 +18,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@js-app/eslint-config/next"
+      "@js-app/eslint-config/library"
     ]
   }
 }

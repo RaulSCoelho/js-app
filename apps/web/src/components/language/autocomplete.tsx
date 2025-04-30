@@ -1,8 +1,9 @@
 'use client'
 
+import { SupportedLanguage } from '@js-app/i18n'
+
 import { Autocomplete } from '../autocomplete'
 import { languages } from './consts'
-import { SupportedLanguage } from './types'
 import { useLanguage } from './use-language'
 
 const languageSelectTexts = {
