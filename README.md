@@ -1,11 +1,12 @@
-# js-app Monorepo
+# JS App Monorepo
 
 > A modern, fully-typed monorepo for web and API applications, powered by Next.js, NestJS, React, Tailwind CSS, Turborepo, and TypeScript.
 
 ---
 
 ## Table of Contents
-- [js-app Monorepo](#js-app-monorepo)
+
+- [JS App Monorepo](#js-app-monorepo)
   - [Table of Contents](#table-of-contents)
   - [Monorepo Architecture](#monorepo-architecture)
   - [Technology Stack](#technology-stack)
@@ -26,6 +27,9 @@
   - [Shared Packages](#shared-packages)
     - [`@js-app/env`](#js-appenv)
     - [`@js-app/auth`](#js-appauth)
+    - [`@js-app/i18n`](#js-appi18n)
+    - [`@js-app/shared-schemas`](#js-appshared-schemas)
+    - [`@js-app/shared-utils`](#js-appshared-utils)
   - [Shared Configs](#shared-configs)
   - [Contributing](#contributing)
 
@@ -49,20 +53,22 @@ This repository uses [pnpm workspaces](https://pnpm.io/workspaces) and [Turborep
 ```
 js-app/
 ├── apps/
-│   ├── api/        # NestJS back-end application
-│   └── web/        # Next.js front-end application
+│   ├── api/               # NestJS backend application
+│   └── web/               # Next.js frontend application
 ├── config/
-│   ├── eslint-config/       # Shared ESLint configs
-│   └── typescript-config/   # Shared TypeScript configs
+│   ├── eslint-config/     # Shared ESLint configuration
+│   └── typescript-config/ # Shared TypeScript configuration
 ├── packages/
-│   ├── auth/       # Shared authentication & authorization logic
-│   ├── env/       # Shared environment configuration
-│   └── shared-utils/        # Shared utility functions
-├── .gitignore
-├── package.json            # Root scripts & workspace config
-├── pnpm-workspace.yaml
-├── README.md
-└── turbo.json
+│   ├── auth/              # Authentication and authorization logic (CASL roles, abilities)
+│   ├── env/               # Shared environment variable definitions and loaders
+│   ├── i18n/              # Internationalization setup and shared translations
+│   ├── shared-schemas/    # Zod schemas shared across apps and services
+│   └── shared-utils/      # General-purpose utility functions
+├── .gitignore             # Files and folders ignored by Git
+├── package.json           # Root-level scripts and dependency management
+├── pnpm-workspace.yaml    # Monorepo workspace configuration
+├── README.md              # Project overview and usage guide
+└── turbo.json             # Turborepo pipeline configuration
 ```
 
 ## Getting Started
@@ -74,7 +80,7 @@ js-app/
 ### Installation
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone https://github.com/RaulSCoelho/js-app.git
 cd js-app
 
 # Install all dependencies
@@ -124,15 +130,20 @@ pnpm install
 
 ## Web App (`apps/web`)
 
-The `web` application is a Next.js project serving the front-end.
+The `web` application is a **Next.js** frontend using the **App Router** architecture.
 
 ### Features
-- App Router (`src/app`) with layouts and nested routes
-- React Context providers in `src/app/providers.tsx` (auth, i18n, theming)
-- Tailwind CSS & PostCSS configured via `tailwind.config.ts` and `postcss.config.mjs`
-- Environment variables validated by `@js-app/env`
-- Role-based access control via `@js-app/auth`
-- i18n support with a custom language provider
+
+- **App Router (`src/app`)**
+- **Custom context providers** defined in `src/app/providers.tsx`:
+  - Authentication
+  - Internationalization (i18n)
+  - Theming (light/dark mode)
+- **Tailwind CSS**
+- **Environment variable validation** using `@js-app/env`
+- **Role-based access control** using `@js-app/auth`, integrated with CASL
+- **i18n support** via a custom provider using `@js-app/i18n`
+
 
 ### Environment Variables
 | Variable               | Description                     | Default                        |
@@ -147,26 +158,32 @@ NEXT_PUBLIC_API_URL=https://api.myapp.com
 ### Development & Production
 ```bash
 # Development
-pnpm --filter web dev
+pnpm --filter @js-app/web dev
 
 # Build & Start
-pnpm --filter web build
-pnpm --filter web start
+pnpm --filter @js-app/web build
+pnpm --filter @js-app/web start
 ```
 
 ## API App (`apps/api`)
 
-The `api` application is a NestJS project serving the back-end.
+The `api` application is a **NestJS** project that powers the backend services.
 
 ### Features
-- Built with NestJS, TypeScript, and zod
-- Environment configuration via `@js-app/env`
-- JWT-based authentication and role guards using `@js-app/auth`
+
+- Built with **NestJS**, **TypeScript**, and **Zod**
+- **Environment configuration** and validation via `@js-app/env`
+- **JWT-based authentication** with **role-based guards** powered by `@js-app/auth`
+- Supports **declarative authorization** using CASL abilities
+- Shared **Zod schemas** from `@js-app/shared-schemas` for request/response validation
+- Organized with a modular structure for scalability and maintainability
 
 ### Environment Variables
 | Variable            | Description                                | Default                               |
 |---------------------|--------------------------------------------|---------------------------------------|
 | `PORT`              | Port on which the API server listens       | `3333`                                |
+| `NODE_ENV`          | Environment mode                           | `development`                         |
+| `CORS_ORIGINS`      | Comma-separated list of allowed origins    | `*`                                   |
 
 Create a `.env` file in `apps/api` to override:
 ```dotenv
@@ -176,24 +193,44 @@ PORT=3333
 ### Development & Production
 ```bash
 # Development
-pnpm --filter api dev
+pnpm --filter @js-app/api dev
 
 # Build & Start
-pnpm --filter api build
-pnpm --filter api start
+pnpm --filter @js-app/api build
+pnpm --filter @js-app/api start
 ```
 
 ## Shared Packages
 
 ### `@js-app/env`
-Centralizes environment variable schemas with Zod:
-- Validates server and client variables
-- Provides defaults and runtime checks
+Centralized environment variable management using **Zod**:
+- Validates both server-side and client-side environment variables
+- Provides default values and runtime validation
+- Ensures consistent environment handling across apps
 
 ### `@js-app/auth`
-Implements role-based access control using CASL:
-- Defines `User` models, roles, and permissions
-- Exposes `createAppAbility` for policy enforcement in both API and front-end
+Role-based access control powered by **CASL**:
+- Defines user roles, permissions, and the `User` model
+- Exposes `createAppAbility()` for consistent access checks in both the frontend and backend
+- Enables declarative, policy-driven authorization
+
+### `@js-app/i18n`
+Internationalization support:
+- Centralizes translation messages
+- Provides language switch utilities
+- Compatible with Next.js `app` and `pages` routers
+
+### `@js-app/shared-schemas`
+Reusable **Zod** schemas for data validation:
+- Defines types shared across frontend and backend
+- Useful for form validation, API DTOs, and database input/output
+- Promotes type-safe contracts between services
+
+### `@js-app/shared-utils`
+General-purpose utility functions:
+- Common helpers for formatting, parsing, timing, etc.
+- Shared across all apps and packages
+- Designed for maximum reusability
 
 ## Shared Configs
 
