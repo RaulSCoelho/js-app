@@ -3,7 +3,7 @@ import './globals.css'
 import { Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
-import { generateMultiLangMetadata } from '@/components/language'
+import { generateMultiLangMetadata } from '@/lib/i18n'
 
 import { Providers } from './_providers'
 import { metadataTexts } from './consts'

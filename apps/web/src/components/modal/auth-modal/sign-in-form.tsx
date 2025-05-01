@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoginPayload, loginSchema } from '@js-app/shared-schemas'
-import { useForm } from 'react-hook-form'
 
 import { useUser } from '@/app/_providers/user-provider'
 import { Button } from '@/components/button'
@@ -10,6 +9,7 @@ import { Form } from '@/components/form'
 import { Input, PasswordInput } from '@/components/input'
 import { MultiLangText, useLanguage } from '@/components/language'
 import { authModalTexts } from '@/components/modal'
+import { useForm } from '@/hooks/use-form'
 
 export function SignInForm({ children, onSuccess }: { children: React.ReactNode; onSuccess?: () => void }) {
   const { signIn } = useUser()

@@ -42,20 +42,20 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const handleSignIn = useCallback(async (payload: SignInRequest) => {
     const response = await signInAction(payload)
-    if (response.user) {
-      setUser(response.user)
-      return { user: response.user }
-    }
-    return { errors: response.errors }
+
+    if (!response.success) return response.errors
+
+    setUser(response.user)
+    return { user: response.user }
   }, [])
 
   const handleSignUp = useCallback(async (payload: SignUpRequest) => {
     const response = await signUpAction(payload)
-    if (response.user) {
-      setUser(response.user)
-      return { user: response.user }
-    }
-    return { errors: response.errors }
+
+    if (!response.success) return response.errors
+
+    setUser(response.user)
+    return { user: response.user }
   }, [])
 
   const handleSignOut = useCallback(async () => {

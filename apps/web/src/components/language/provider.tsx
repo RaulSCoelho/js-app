@@ -4,9 +4,9 @@ import { LanguageText, SupportedLanguage } from '@js-app/i18n'
 import { useCallback, useEffect, useState } from 'react'
 
 import { cookies } from '@/lib/cookies'
+import { multiLangText as originalMultiLangText } from '@/lib/i18n'
 
 import { LanguageContext } from './context'
-import { multiLangText as originalMultiLangText } from './multi-lang-text'
 
 const supportedLanguages: SupportedLanguage[] = ['en', 'es', 'fr', 'de', 'pt-BR']
 
