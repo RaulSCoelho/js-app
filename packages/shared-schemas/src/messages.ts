@@ -1,4 +1,4 @@
-import { userValidationMessages } from './users/messages'
+import { userValidationMessages } from './users'
 
 export const validationsMessages = {
   ...userValidationMessages

@@ -9,6 +9,8 @@ export const USERNAME_TOO_LONG = 'Username must be at most 30 characters long.'
 export const PASSWORD_TOO_SHORT = 'Password must be at least 8 characters long.'
 export const PASSWORD_TOO_LONG = 'Password must be at most 64 characters long.'
 
+export const INVALID_CREDENTIALS = 'Invalid credentials.'
+
 export const userValidationMessages = {
   [USERNAME_INVALID_CHARS]: {
     en: USERNAME_INVALID_CHARS,
@@ -72,5 +74,12 @@ export const userValidationMessages = {
     fr: 'Le mot de passe doit contenir au maximum 64 caractères.',
     de: 'Das Passwort darf höchstens 64 Zeichen lang sein.',
     'pt-BR': 'A senha deve ter no máximo 64 caracteres.'
+  },
+  [INVALID_CREDENTIALS]: {
+    en: INVALID_CREDENTIALS,
+    es: 'Credenciales inválidas.',
+    fr: 'Identifiants invalides.',
+    de: 'Ungültige Anmeldeinformationen.',
+    'pt-BR': 'Credenciais inválidas.'
   }
 }

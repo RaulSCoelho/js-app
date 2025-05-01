@@ -11,19 +11,14 @@ import { getUser } from '@/http/auth-get-user'
 import { SignInRequest } from '@/http/sign-in'
 import { SignUpRequest } from '@/http/sign-up'
 import { cookies } from '@/lib/cookies'
-import { FieldErrorsShape } from '@/lib/is-field-errors-shape'
 
 export interface UserContextProps {
   user?: User
   isAuthenticated: boolean
   isAdmin: boolean
   isLoading: boolean
-  signIn: (
-    payload: SignInRequest
-  ) => Promise<{ user: User; errors: undefined } | (FieldErrorsShape & { user: undefined })>
-  signUp: (
-    payload: SignUpRequest
-  ) => Promise<{ user: User; errors: undefined } | (FieldErrorsShape & { user: undefined })>
+  signIn: (payload: SignInRequest) => ReturnType<typeof signInAction>
+  signUp: (payload: SignUpRequest) => ReturnType<typeof signUpAction>
   signOut: () => Promise<void>
 }
 
@@ -42,20 +37,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const handleSignIn = useCallback(async (payload: SignInRequest) => {
     const response = await signInAction(payload)
-
-    if (!response.success) return response.errors
-
-    setUser(response.user)
-    return { user: response.user }
+    if (response.success) setUser(response.user)
+    return response
   }, [])
 
   const handleSignUp = useCallback(async (payload: SignUpRequest) => {
     const response = await signUpAction(payload)
-
-    if (!response.success) return response.errors
-
-    setUser(response.user)
-    return { user: response.user }
+    if (response.success) setUser(response.user)
+    return response
   }, [])
 
   const handleSignOut = useCallback(async () => {

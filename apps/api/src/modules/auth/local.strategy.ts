@@ -1,6 +1,8 @@
-import { User } from '@js-app/shared-schemas'
+import { multiLangText } from '@js-app/i18n'
+import { INVALID_CREDENTIALS, User, validationsMessages } from '@js-app/shared-schemas'
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
+import { FastifyRequest } from 'fastify'
 import { Strategy } from 'passport-local'
 
 import { AuthService } from './auth.service'
@@ -8,15 +10,18 @@ import { AuthService } from './auth.service'
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
-    super()
+    super({ passReqToCallback: true })
   }
 
-  async validate(username: string, password: string): Promise<User> {
+  async validate(req: FastifyRequest, username: string, password: string): Promise<User> {
     const user = await this.authService.validateUser(username, password)
+    const lang = req.headers['x-language']
+    const message = multiLangText(validationsMessages[INVALID_CREDENTIALS], { lang })
+
     if (!user) {
       throw new UnauthorizedException({
-        message: 'Invalid credentials',
-        errors: { username: ['Invalid credentials'], password: ['Invalid credentials'] }
+        message,
+        errors: { username: [message], password: [message] }
       })
     }
     return user

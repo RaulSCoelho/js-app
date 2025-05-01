@@ -1,5 +1,6 @@
 'use client'
 
+import { addToast } from '@heroui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoginPayload, loginSchema } from '@js-app/shared-schemas'
 
@@ -19,16 +20,21 @@ export function SignInForm({ children, onSuccess }: { children: React.ReactNode;
   async function onSubmit(payload: LoginPayload) {
     const response = await signIn(payload)
 
-    if (response.user) {
-      onSuccess?.()
-      return form.reset()
+    if (!response.success) {
+      if (response.errors) {
+        for (const [field, messages] of Object.entries(response.errors)) {
+          if (messages && messages.length > 0) {
+            form.setError(field as keyof LoginPayload, { type: 'manual', message: messages[0] })
+          }
+        }
+      } else {
+        addToast({ description: response.message, color: 'danger' })
+      }
+      return
     }
 
-    for (const [field, messages] of Object.entries(response.errors)) {
-      if (messages && messages.length > 0) {
-        form.setError(field as keyof LoginPayload, { type: 'manual', message: messages[0] })
-      }
-    }
+    onSuccess?.()
+    return form.reset()
   }
 
   return (

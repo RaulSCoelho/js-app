@@ -1,5 +1,6 @@
 'use client'
 
+import { addToast } from '@heroui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { RegisterPayload, registerSchema } from '@js-app/shared-schemas'
 
@@ -19,16 +20,21 @@ export function SignUpForm({ children, onSuccess }: { children: React.ReactNode;
   async function onSubmit(payload: RegisterPayload) {
     const response = await signUp(payload)
 
-    if (response.user) {
-      onSuccess?.()
-      return form.reset()
+    if (!response.success) {
+      if (response.errors) {
+        for (const [field, messages] of Object.entries(response.errors)) {
+          if (messages && messages.length > 0) {
+            form.setError(field as keyof RegisterPayload, { type: 'manual', message: messages[0] })
+          }
+        }
+      } else {
+        addToast({ description: response.message, color: 'danger' })
+      }
+      return
     }
 
-    for (const [field, messages] of Object.entries(response.errors)) {
-      if (messages && messages.length > 0) {
-        form.setError(field as keyof RegisterPayload, { type: 'manual', message: messages[0] })
-      }
-    }
+    onSuccess?.()
+    return form.reset()
   }
 
   return (
