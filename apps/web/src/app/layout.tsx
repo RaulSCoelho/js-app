@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} overflow-auto scroll-smooth bg-default-50 antialiased scrollbar-thumb-active-primary/75 scrollbar-thumb-foreground/50 scrollbar-thumb-hover-foreground/75 scrollbar-track-background`}
+        className={`${geistSans.variable} ${geistMono.variable} overflow-auto scroll-smooth antialiased scrollbar-thumb-active-primary/75 scrollbar-thumb-foreground/50 scrollbar-thumb-hover-foreground/75 scrollbar-track-background`}
       >
         <Providers>{children}</Providers>
       </body>
