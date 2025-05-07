@@ -14,16 +14,18 @@ export function multiLangText(texts: LanguageText, options: MultiLangTextOptions
   return originalMultiLangText(texts, { fallbackLang, lang })
 }
 
-export interface GenerateMultiLangMetadataProps extends Omit<Metadata, 'title' | 'description'> {
+export interface GenerateMultiLangMetadataProps extends Omit<Metadata, 'title' | 'description' | 'keywords'> {
   title: SupportedLanguageText
   template?: string
   description?: SupportedLanguageText
+  keywords?: SupportedLanguageText
 }
 
 export async function generateMultiLangMetadata({
   title,
   template,
   description,
+  keywords,
   ...props
 }: GenerateMultiLangMetadataProps) {
   const [serverCookies] = await cookies.server()
@@ -42,6 +44,7 @@ export async function generateMultiLangMetadata({
   }
 
   if (description) metadata.description = multiLangText(description, { lang: saved })
+  if (keywords) metadata.keywords = multiLangText(keywords, { lang: saved }).split(', ')
 
   return metadata
 }
