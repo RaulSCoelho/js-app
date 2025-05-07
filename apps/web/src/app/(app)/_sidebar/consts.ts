@@ -27,6 +27,20 @@ export const appSidebarTexts = {
       es: 'Soporte',
       fr: 'Assistance',
       de: 'Support'
+    },
+    users: {
+      en: 'Users',
+      'pt-BR': 'Usuários',
+      es: 'Usuarios',
+      fr: 'Utilisateurs',
+      de: 'Benutzer'
+    },
+    manageUsers: {
+      en: 'Manage Users',
+      'pt-BR': 'Gerenciar Usuários',
+      es: 'Gestionar Usuarios',
+      fr: 'Gérer les Utilisateurs',
+      de: 'Benutzer Verwalten'
     }
   }
 }

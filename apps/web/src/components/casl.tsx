@@ -11,12 +11,14 @@ export const useAbility = () => useContext(AbilityContext)
 
 export const ContextualCan = createContextualCan(AbilityContext.Consumer)
 export type ContextualCanProps = React.ComponentProps<typeof ContextualCan>
+export type CanParams = Parameters<NonNullable<ContextualCanProps['ability']>['can']>
 
-export interface CanProps extends Omit<ContextualCanProps, 'children'> {
-  children: React.ReactNode
+export type CanProps = {
+  I?: CanParams[0]
+  a?: CanParams[1]
 }
 
-export function Can({ children, ...can }: CanProps) {
+export function Can({ children, ...can }: CanProps & { children: React.ReactNode }) {
   if (!Object.keys(can).length) return <>{children}</>
   return <ContextualCan {...(can as ContextualCanProps)}>{children}</ContextualCan>
 }

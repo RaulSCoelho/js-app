@@ -8,6 +8,7 @@ import { forwardRef, useEffect, useState } from 'react'
 
 import { Button, ButtonProps } from '@/components/button'
 
+import { Can, CanProps } from '../casl'
 import { Collapse } from '../collapse'
 import { IconType } from '../icon'
 
@@ -29,10 +30,7 @@ type BaseSidebarRouteProps = Omit<ButtonProps, 'ref'> & {
   icon?: IconType
   activeVariant?: ButtonProps['variant']
   classNames?: SlotsToClasses<keyof ReturnType<typeof sidebarRoute>>
-  // canProps?: {
-  //   I: I
-  //   a: Do
-  // }
+  can?: CanProps
 }
 
 export interface SidebarSubRouteProps extends Omit<BaseSidebarRouteProps, 'classNames'> {
@@ -59,7 +57,7 @@ export const SidebarRoute = forwardRef<HTMLButtonElement, SidebarRouteProps>(fun
     classNames,
     className,
     subRoutes,
-    // canProps = {},
+    can,
     ...props
   },
   ref
@@ -80,8 +78,7 @@ export const SidebarRoute = forwardRef<HTMLButtonElement, SidebarRouteProps>(fun
   }
 
   return (
-    <>
-      {/* <Can {...(canProps as any)}> */}
+    <Can {...can}>
       <Button
         ref={ref}
         as={Link}
@@ -115,7 +112,6 @@ export const SidebarRoute = forwardRef<HTMLButtonElement, SidebarRouteProps>(fun
           ))}
         </Collapse>
       )}
-      {/* </Can> */}
-    </>
+    </Can>
   )
 })

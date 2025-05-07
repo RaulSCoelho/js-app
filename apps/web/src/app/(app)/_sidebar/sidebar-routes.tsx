@@ -1,17 +1,19 @@
 'use client'
 
-import { ChartBarIcon, Cog6ToothIcon, HomeIcon, LifebuoyIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline'
+import {
+  ChartBarIcon,
+  Cog6ToothIcon,
+  HomeIcon,
+  LifebuoyIcon,
+  UserGroupIcon,
+  UsersIcon
+} from '@heroicons/react/24/outline'
 import { useMemo } from 'react'
 
-import { Can, CanProps } from '@/components/casl'
 import { useLanguage } from '@/components/language'
 import { SidebarRoute, SidebarRouteProps } from '@/components/sidebar'
 
 import { appSidebarTexts } from './consts'
-
-export type AppSidebarRouteProps = SidebarRouteProps & {
-  can?: Omit<CanProps, 'children'>
-}
 
 export function AppSidebarRoutes() {
   const { multiLangText } = useLanguage()
@@ -28,27 +30,27 @@ export function AppSidebarRoutes() {
         { icon: LifebuoyIcon, href: '#', children: multiLangText(appSidebarTexts.routes.support) },
         {
           icon: UsersIcon,
-          href: '#',
-          children: 'Users',
-          can: { I: 'manage', a: 'User' },
+          href: '/users',
+          children: multiLangText(appSidebarTexts.routes.users),
+          can: { I: 'get', a: 'User' },
           subRoutes: [
             {
-              icon: UserIcon,
-              href: '#',
-              children: 'List'
+              icon: UserGroupIcon,
+              href: '/users',
+              children: multiLangText(appSidebarTexts.routes.manageUsers)
             }
           ]
         }
-      ] as AppSidebarRouteProps[],
+      ] as SidebarRouteProps[],
     [multiLangText]
   )
 
   return (
     <div className="space-y-1 overflow-hidden transition-width">
       {routes.map(({ children, can, ...rest }, i) => (
-        <Can key={i} {...can}>
-          <SidebarRoute {...rest}>{children}</SidebarRoute>
-        </Can>
+        <SidebarRoute can={can} key={i} {...rest}>
+          {children}
+        </SidebarRoute>
       ))}
     </div>
   )
