@@ -8,7 +8,7 @@ import { forwardRef, useEffect, useState } from 'react'
 
 import { Button, ButtonProps } from '@/components/button'
 
-import { Can, CanProps } from '../casl'
+import { Can, CanProps } from '../can'
 import { Collapse } from '../collapse'
 import { IconType } from '../icon'
 

@@ -1,5 +1,6 @@
 import { User } from '@js-app/shared-schemas'
 
+import { Guard } from '@/components/guard'
 import { getUsers } from '@/http/get-users'
 import { generateMultiLangMetadata } from '@/lib/i18n'
 
@@ -17,9 +18,11 @@ export default async function Page() {
   } catch (error) {}
 
   return (
-    <div className="flex flex-col p-4">
-      <h1 className="mb-6 text-2xl font-bold">Users</h1>
-      <UsersTable users={users} />
-    </div>
+    <Guard can={['get', 'User']}>
+      <div className="flex flex-col p-4">
+        <h1 className="mb-6 text-2xl font-bold">Users</h1>
+        <UsersTable users={users} />
+      </div>
+    </Guard>
   )
 }

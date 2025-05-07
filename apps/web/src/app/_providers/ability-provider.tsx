@@ -1,14 +1,16 @@
 'use client'
 
-import { getUserPermissions } from '@js-app/auth'
-
-import { AbilityProvider as CaslAbilityProvider } from '@/components/casl'
+import { AppAbility, getUserPermissions } from '@js-app/auth'
+import { createContext, useContext } from 'react'
 
 import { useUser } from './user-provider'
+
+export const AbilityContext = createContext<AppAbility>({} as AppAbility)
+export const useAbility = () => useContext(AbilityContext)
 
 export function AbilityProvider({ children }: { children: React.ReactNode }) {
   const { user } = useUser()
   const ability = getUserPermissions(user?.id ?? 0, user?.role ?? 'ANONYMOUS')
 
-  return <CaslAbilityProvider value={ability}>{children}</CaslAbilityProvider>
+  return <AbilityContext.Provider value={ability}>{children}</AbilityContext.Provider>
 }
