@@ -4,6 +4,8 @@ import { AppAbility } from '@js-app/auth'
 import { redirect } from 'next/navigation'
 
 import { useAbility } from '@/app/_providers/ability-provider'
+import { useUser } from '@/app/_providers/user-provider'
+import Loading from '@/app/loading'
 
 export interface GuardProps {
   children: React.ReactNode
@@ -13,8 +15,11 @@ export interface GuardProps {
 }
 
 export function Guard({ children, can: canProps, cannot: cannotProps, redirectTo = '/' }: GuardProps) {
+  const { isLoading } = useUser()
   const { can, cannot } = useAbility()
   const isAllowed = (!canProps || can(...canProps)) && (!cannotProps || !cannot(...cannotProps))
+
+  if (isLoading) return <Loading isFixed={false} />
 
   if (!isAllowed) {
     return redirect(redirectTo)
