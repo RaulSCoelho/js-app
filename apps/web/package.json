@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@casl/react": "^5.0.0",
     "@heroicons/react": "^2.2.0",
     "@heroui/react": "^2.7.6",
     "@hookform/resolvers": "^5.0.1",

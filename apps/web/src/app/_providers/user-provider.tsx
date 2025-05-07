@@ -1,11 +1,13 @@
 'use client'
 
+import { getUserPermissions } from '@js-app/auth'
 import { User } from '@js-app/shared-schemas'
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react'
 
 import { signInAction } from '@/actions/sign-in'
 import { signOutAction } from '@/actions/sign-out'
 import { signUpAction } from '@/actions/sign-up'
+import { AbilityProvider } from '@/components/casl'
 import { useIsMounted } from '@/hooks/use-is-mounted'
 import { getUser } from '@/http/auth-get-user'
 import { SignInRequest } from '@/http/sign-in'
@@ -26,6 +28,7 @@ export const UserContext = createContext({} as UserContextProps)
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>()
+  const ability = getUserPermissions(user?.id ?? 0, user?.role ?? 'ANONYMOUS')
 
   const isMounted = useIsMounted(async () => {
     if (!cookies.get('token')) return
@@ -66,7 +69,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         } as UserContextProps
       }
     >
-      {children}
+      <AbilityProvider value={ability}>{children}</AbilityProvider>
     </UserContext.Provider>
   )
 }

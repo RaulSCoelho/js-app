@@ -150,6 +150,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@casl/react':
+        specifier: ^5.0.0
+        version: 5.0.0(@casl/ability@6.7.3)(react@19.1.0)
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
@@ -553,6 +556,12 @@ packages:
 
   '@casl/ability@6.7.3':
     resolution: {integrity: sha512-A4L28Ko+phJAsTDhRjzCOZWECQWN2jzZnJPnROWWHjJpyMq1h7h9ZqjwS2WbIUa3Z474X1ZPSgW0f1PboZGC0A==}
+
+  '@casl/react@5.0.0':
+    resolution: {integrity: sha512-jiwr6uOBnQA7h0gs+RJIbFVF24Dw6JLiUPL4pfU0OEjWSJFCcYBz6RPU21XNciWL6xwFDOds81cHosuElxfdmw==}
+    peerDependencies:
+      '@casl/ability': ^4.0.0 || ^5.1.0 || ^6.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -6934,6 +6943,11 @@ snapshots:
   '@casl/ability@6.7.3':
     dependencies:
       '@ucast/mongo2js': 1.4.0
+
+  '@casl/react@5.0.0(@casl/ability@6.7.3)(react@19.1.0)':
+    dependencies:
+      '@casl/ability': 6.7.3
+      react: 19.1.0
 
   '@colors/colors@1.5.0':
     optional: true
