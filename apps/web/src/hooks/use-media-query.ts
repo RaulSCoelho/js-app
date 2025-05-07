@@ -1,5 +1,3 @@
-'use client'
-
 import { isServer } from '@js-app/shared-utils'
 import { useEffect, useState } from 'react'
 
