@@ -37,6 +37,7 @@ export const tableColumnSelectorTexts = {
 
 export function TableColumnSelector<T extends Record<string, any>>({
   columns: initialColumns,
+  size = 'sm',
   selectionMode = 'multiple',
   closeOnSelect = false,
   triggerProps = {},
@@ -49,7 +50,7 @@ export function TableColumnSelector<T extends Record<string, any>>({
   const { className: triggerClassName, ...restTriggerProps } = triggerProps
   const {
     children: buttonChildren,
-    size = props.size,
+    size: buttonSize = size,
     color = 'primary',
     variant = 'flat',
     endContent,
@@ -76,7 +77,7 @@ export function TableColumnSelector<T extends Record<string, any>>({
       {...props}
     >
       <Button
-        size={size}
+        size={buttonSize}
         color={color}
         variant={variant}
         endContent={

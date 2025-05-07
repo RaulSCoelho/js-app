@@ -20,7 +20,7 @@ export default async function Page() {
   return (
     <Guard can={['get', 'User']}>
       <div className="flex flex-col p-4">
-        <h1 className="mb-6 text-2xl font-bold">Users</h1>
+        <h1 className="mb-10 text-2xl font-bold">Users</h1>
         <UsersTable users={users} />
       </div>
     </Guard>
