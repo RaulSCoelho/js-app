@@ -1,13 +1,12 @@
 'use client'
 
-import { getUserPermissions } from '@js-app/auth'
+import { AppAbility, getUserPermissions } from '@js-app/auth'
 import { User } from '@js-app/shared-schemas'
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react'
 
 import { signInAction } from '@/actions/sign-in'
 import { signOutAction } from '@/actions/sign-out'
 import { signUpAction } from '@/actions/sign-up'
-import { AbilityProvider } from '@/components/casl'
 import { useIsMounted } from '@/hooks/use-is-mounted'
 import { getUser } from '@/http/auth-get-user'
 import { SignInRequest } from '@/http/sign-in'
@@ -16,6 +15,7 @@ import { cookies } from '@/lib/cookies'
 
 export interface UserContextProps {
   user?: User
+  ability: AppAbility
   isAuthenticated: boolean
   isAdmin: boolean
   isLoading: boolean
@@ -60,6 +60,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       value={
         {
           user,
+          ability,
           isAuthenticated: !!user,
           isAdmin: user?.role === 'ADMIN',
           isLoading: !isMounted,
@@ -69,7 +70,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         } as UserContextProps
       }
     >
-      <AbilityProvider value={ability}>{children}</AbilityProvider>
+      {children}
     </UserContext.Provider>
   )
 }

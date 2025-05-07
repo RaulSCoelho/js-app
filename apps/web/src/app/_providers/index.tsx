@@ -7,6 +7,7 @@ import { ThemeProvider } from 'next-themes'
 import { LanguageProvider } from '@/components/language'
 import { ConfirmationModal } from '@/components/modal'
 
+import { AbilityProvider } from './ability-provider'
 import { UserProvider } from './user-provider'
 
 declare module '@react-types/shared' {
@@ -19,15 +20,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   return (
     <UserProvider>
-      <LanguageProvider>
-        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <HeroUIProvider navigate={router.push}>
-            {children}
-            <ConfirmationModal />
-            <ToastProvider />
-          </HeroUIProvider>
-        </ThemeProvider>
-      </LanguageProvider>
+      <AbilityProvider>
+        <LanguageProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+            <HeroUIProvider navigate={router.push}>
+              {children}
+              <ConfirmationModal />
+              <ToastProvider />
+            </HeroUIProvider>
+          </ThemeProvider>
+        </LanguageProvider>
+      </AbilityProvider>
     </UserProvider>
   )
 }
