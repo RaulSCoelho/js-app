@@ -1,6 +1,5 @@
 'use client'
 
-import { AppAbility, getUserPermissions } from '@js-app/auth'
 import { User } from '@js-app/shared-schemas'
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react'
 
@@ -15,7 +14,6 @@ import { cookies } from '@/lib/cookies'
 
 export interface UserContextProps {
   user?: User
-  ability: AppAbility
   isAuthenticated: boolean
   isAdmin: boolean
   isLoading: boolean
@@ -28,7 +26,6 @@ export const UserContext = createContext({} as UserContextProps)
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>()
-  const ability = getUserPermissions(user?.id ?? 0, user?.role ?? 'ANONYMOUS')
 
   const isMounted = useIsMounted(async () => {
     if (!cookies.get('token')) return
@@ -60,7 +57,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
       value={
         {
           user,
-          ability,
           isAuthenticated: !!user,
           isAdmin: user?.role === 'ADMIN',
           isLoading: !isMounted,
