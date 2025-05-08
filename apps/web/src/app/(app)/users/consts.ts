@@ -22,6 +22,16 @@ export const usersMetadataTexts = {
   }
 }
 
+export const usersPageTexts = {
+  title: {
+    en: 'Users',
+    'pt-BR': 'Usuários',
+    es: 'Usuarios',
+    fr: 'Utilisateurs',
+    de: 'Benutzer'
+  }
+}
+
 export const appUsersTableTexts = {
   tableLabel: {
     en: 'Users table',
