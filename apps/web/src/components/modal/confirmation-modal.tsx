@@ -47,10 +47,10 @@ export function ConfirmationModal() {
         <p>{question}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onPress={handleAction(onCancel)}>
+        <Button size="sm" color="default" onPress={handleAction(onCancel)}>
           <MultiLangText texts={confirmationModalTexts.cancel} />
         </Button>
-        <Button onPress={handleAction(onConfirm, true)} isLoading={isLoading}>
+        <Button size="sm" onPress={handleAction(onConfirm, true)} isLoading={isLoading}>
           <MultiLangText texts={confirmationModalTexts.confirm} />
         </Button>
       </Modal.Footer>

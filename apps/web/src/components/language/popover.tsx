@@ -2,6 +2,7 @@
 
 import { Avatar, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@heroui/react'
 import { SupportedLanguage } from '@js-app/i18n'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { Button } from '../button'
@@ -13,12 +14,14 @@ interface LanguagePopoverProps {
 }
 
 export function LanguagePopover({ className }: LanguagePopoverProps) {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const { language, setLanguage, multiLangText } = useLanguage()
 
   const handleLanguageChange = (code: SupportedLanguage) => () => {
     setLanguage(code)
     setIsOpen(false)
+    router.refresh()
   }
 
   return (

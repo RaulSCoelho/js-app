@@ -1,6 +1,7 @@
 'use client'
 
 import { SupportedLanguage } from '@js-app/i18n'
+import { useRouter } from 'next/navigation'
 
 import { Autocomplete } from '../autocomplete'
 import { languages } from './consts'
@@ -24,7 +25,13 @@ const languageSelectTexts = {
 }
 
 export function LanguageAutocomplete() {
+  const router = useRouter()
   const { language, setLanguage, multiLangText } = useLanguage()
+
+  const handleLanguageChange = (key: React.Key | null) => () => {
+    setLanguage(key as SupportedLanguage)
+    router.refresh()
+  }
 
   return (
     <Autocomplete
@@ -35,7 +42,7 @@ export function LanguageAutocomplete() {
       valueKey="code"
       labelKey="name"
       selectedKey={language}
-      onSelectionChange={key => setLanguage(key as SupportedLanguage)}
+      onSelectionChange={handleLanguageChange}
       isClearable={false}
     />
   )
