@@ -3,6 +3,8 @@
 import { SlotsToClasses, Tooltip, TooltipProps, tv } from '@heroui/react'
 import { ComponentPropsWithoutRef } from 'react'
 
+import { IconType } from '../icon'
+
 const tableAction = tv({
   slots: {
     base: 'cursor-pointer text-default-400 active:opacity-50',
@@ -22,7 +24,7 @@ const tableAction = tv({
 })
 
 export interface TableActionProps extends ComponentPropsWithoutRef<'span'> {
-  icon: React.ElementType
+  icon: IconType
   size?: number
   tooltip?: string
   color?: TooltipProps['color']
@@ -33,7 +35,7 @@ export interface TableActionProps extends ComponentPropsWithoutRef<'span'> {
 
 export function TableAction({
   icon: Icon,
-  size = 24,
+  size = 20,
   tooltip,
   color = 'default',
   classNames,
@@ -45,7 +47,7 @@ export function TableAction({
   return (
     <Tooltip color={color} classNames={classNames?.tooltip} content={tooltip} isDisabled={!tooltip}>
       <span className={base({ class: [classNames?.base, className] })} {...props}>
-        <Icon className={icon({ class: classNames?.icon })} size={size} />
+        <Icon className={icon({ class: classNames?.icon })} width={size} height={size} />
       </span>
     </Tooltip>
   )

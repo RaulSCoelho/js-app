@@ -4,15 +4,19 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { CORS_ORIGINS, ENV, PORT } from './config/app'
-import { AttachHeadersInterceptor } from './interceptors/attach-headers.interceptor'
+// import { AttachHeadersInterceptor } from './interceptors/attach-headers.interceptor'
 import { AppModule } from './modules/app.module'
 import { ZodValidationPipe } from './pipes/zod-validation.pipe'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter())
 
-  app.enableCors({ origin: CORS_ORIGINS, credentials: true })
-  app.useGlobalInterceptors(new AttachHeadersInterceptor())
+  app.enableCors({
+    origin: CORS_ORIGINS,
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+  })
+  // app.useGlobalInterceptors(new AttachHeadersInterceptor())
   app.useGlobalPipes(new ZodValidationPipe())
 
   const config = new DocumentBuilder()

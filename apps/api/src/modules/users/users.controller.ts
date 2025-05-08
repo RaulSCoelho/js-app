@@ -20,7 +20,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param() { id }: { id: string }) {
     return this.usersService.findOne(+id)
   }
 
@@ -31,7 +31,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  updateUser(@Req() req: FastifyRequest, @Param('id') id: string, @Body() body: UpdateDto) {
+  updateUser(@Req() req: FastifyRequest, @Param() { id }: { id: string }, @Body() body: UpdateDto) {
     casl(req, {
       action: 'update',
       subject: { __typename: 'User', id: +id, role: 'MEMBER' },
@@ -41,7 +41,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  deleteUser(@Req() req: FastifyRequest, @Param('id') id: string) {
+  deleteUser(@Req() req: FastifyRequest, @Param() { id }: { id: string }) {
     casl(req, {
       action: 'delete',
       subject: { __typename: 'User', id: +id, role: 'MEMBER' },

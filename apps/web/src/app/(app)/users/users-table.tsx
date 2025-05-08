@@ -1,12 +1,15 @@
 'use client'
 
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { TrashIcon } from '@heroicons/react/24/outline'
 import { tv } from '@heroui/react'
 import { User } from '@js-app/shared-schemas'
 import { useCallback } from 'react'
 
+import { useAbility } from '@/app/_providers/ability-provider'
 import { Can } from '@/components/can'
+import { confirmationModal } from '@/components/modal'
 import { Table, TableAction, TableActionWrapper, TableTopContent } from '@/components/table'
+import { deleteUser } from '@/http/delete-user'
 
 export const roleClass = tv({
   variants: {
@@ -22,13 +25,29 @@ export interface UsersTableProps {
 }
 
 export function UsersTable({ users = [] }: UsersTableProps) {
+  const { can } = useAbility()
+
+  const onDelete = useCallback(
+    (userId: number) => () => {
+      confirmationModal({
+        title: 'Delete User',
+        question: 'Are you sure you want to delete this user?',
+        onConfirm: async () => {
+          try {
+            await deleteUser(userId)
+          } catch {}
+        }
+      })
+    },
+    []
+  )
+
   const renderCell = useCallback((user: User, columnKey: keyof User | 'actions') => {
     if (columnKey === 'actions') {
       return (
         <Can I="manage" a="User">
-          <TableActionWrapper>
-            <TableAction icon={PencilIcon} tooltip="Edit" className="text-primary hover:text-secondary" />
-            <TableAction icon={TrashIcon} tooltip="Delete" className="text-danger hover:text-secondary" />
+          <TableActionWrapper className="justify-center gap-4">
+            <TableAction icon={TrashIcon} tooltip="Delete" color="danger" onClick={onDelete(user.id)} />
           </TableActionWrapper>
         </Can>
       )
@@ -36,7 +55,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
 
     switch (columnKey) {
       case 'role':
-        return <b className={roleClass({ role: user.role })}>{user[columnKey]}</b>
+        return <b className={roleClass({ role: user.role })}>{user[columnKey].toLocaleLowerCase()}</b>
       default:
         return user[columnKey]
     }
@@ -66,7 +85,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
         { uid: 'id', name: 'ID', sortable: true },
         { uid: 'username', name: 'Username', sortable: true },
         { uid: 'role', name: 'Role', sortable: true },
-        { uid: 'actions', name: 'Actions', sortable: false }
+        ...(can('manage', 'User') ? [{ uid: 'actions', name: 'Actions', sortable: false }] : ([] as any))
       ]}
       bodyProps={{ emptyContent: 'No users found' }}
       classNames={{ wrapper: 'bg-background' }}
