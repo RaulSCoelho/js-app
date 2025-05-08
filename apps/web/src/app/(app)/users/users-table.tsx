@@ -7,9 +7,12 @@ import { useCallback } from 'react'
 
 import { useAbility } from '@/app/_providers/ability-provider'
 import { Can } from '@/components/can'
+import { useLanguage } from '@/components/language'
 import { confirmationModal } from '@/components/modal'
 import { Table, TableAction, TableActionWrapper, TableTopContent } from '@/components/table'
 import { deleteUser } from '@/http/delete-user'
+
+import { appUsersTableTexts } from './consts'
 
 export const roleClass = tv({
   variants: {
@@ -26,12 +29,13 @@ export interface UsersTableProps {
 
 export function UsersTable({ users = [] }: UsersTableProps) {
   const { can } = useAbility()
+  const { multiLangText } = useLanguage()
 
   const onDelete = useCallback(
     (userId: number) => () => {
       confirmationModal({
-        title: 'Delete User',
-        question: 'Are you sure you want to delete this user?',
+        title: multiLangText(appUsersTableTexts.deleteTitle),
+        question: multiLangText(appUsersTableTexts.deleteQuestion),
         onConfirm: async () => {
           try {
             await deleteUser(userId)
@@ -47,7 +51,12 @@ export function UsersTable({ users = [] }: UsersTableProps) {
       return (
         <Can I="manage" a="User">
           <TableActionWrapper className="justify-center gap-4">
-            <TableAction icon={TrashIcon} tooltip="Delete" color="danger" onClick={onDelete(user.id)} />
+            <TableAction
+              icon={TrashIcon}
+              tooltip={multiLangText(appUsersTableTexts.deleteTooltip)}
+              color="danger"
+              onClick={onDelete(user.id)}
+            />
           </TableActionWrapper>
         </Can>
       )
@@ -73,7 +82,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
 
   return (
     <Table
-      aria-label="Users table"
+      aria-label={multiLangText(appUsersTableTexts.tableLabel)}
       selectionMode="none"
       items={users}
       rowKey="id"
@@ -82,12 +91,14 @@ export function UsersTable({ users = [] }: UsersTableProps) {
       renderCell={renderCell}
       topContent={topContent}
       columns={[
-        { uid: 'id', name: 'ID', sortable: true },
-        { uid: 'username', name: 'Username', sortable: true },
-        { uid: 'role', name: 'Role', sortable: true },
-        ...(can('manage', 'User') ? [{ uid: 'actions', name: 'Actions', sortable: false }] : ([] as any))
+        { uid: 'id', name: multiLangText(appUsersTableTexts.id), sortable: true },
+        { uid: 'username', name: multiLangText(appUsersTableTexts.username), sortable: true },
+        { uid: 'role', name: multiLangText(appUsersTableTexts.role), sortable: true },
+        ...(can('manage', 'User')
+          ? [{ uid: 'actions', name: multiLangText(appUsersTableTexts.actions), sortable: false }]
+          : ([] as any))
       ]}
-      bodyProps={{ emptyContent: 'No users found' }}
+      bodyProps={{ emptyContent: multiLangText(appUsersTableTexts.emptyContent) }}
       classNames={{ wrapper: 'bg-background' }}
     />
   )

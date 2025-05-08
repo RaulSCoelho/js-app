@@ -21,3 +21,69 @@ export const usersMetadataTexts = {
     de: 'Benutzerverwaltung, Admin-Panel, Zugriffskontrolle, Benutzerrollen'
   }
 }
+
+export const appUsersTableTexts = {
+  tableLabel: {
+    en: 'Users table',
+    'pt-BR': 'Tabela de usuários',
+    es: 'Tabla de usuarios',
+    fr: 'Tableau des utilisateurs',
+    de: 'Benutzertabelle'
+  },
+  id: {
+    en: 'ID',
+    'pt-BR': 'ID',
+    es: 'ID',
+    fr: 'ID',
+    de: 'ID'
+  },
+  username: {
+    en: 'Username',
+    'pt-BR': 'Nome de usuário',
+    es: 'Nombre de usuario',
+    fr: "Nom d'utilisateur",
+    de: 'Benutzername'
+  },
+  role: {
+    en: 'Role',
+    'pt-BR': 'Função',
+    es: 'Rol',
+    fr: 'Rôle',
+    de: 'Rolle'
+  },
+  actions: {
+    en: 'Actions',
+    'pt-BR': 'Ações',
+    es: 'Acciones',
+    fr: 'Actions',
+    de: 'Aktionen'
+  },
+  deleteTooltip: {
+    en: 'Delete',
+    'pt-BR': 'Excluir',
+    es: 'Eliminar',
+    fr: 'Supprimer',
+    de: 'Löschen'
+  },
+  deleteTitle: {
+    en: 'Delete User',
+    'pt-BR': 'Excluir Usuário',
+    es: 'Eliminar Usuario',
+    fr: 'Supprimer l’utilisateur',
+    de: 'Benutzer löschen'
+  },
+  deleteQuestion: {
+    en: 'Are you sure you want to delete this user?',
+    'pt-BR': 'Tem certeza de que deseja excluir este usuário?',
+    es: '¿Estás seguro de que deseas eliminar este usuario?',
+    fr: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?',
+    de: 'Möchten Sie diesen Benutzer wirklich löschen?'
+  },
+  emptyContent: {
+    en: 'No users found',
+    'pt-BR': 'Nenhum usuário encontrado',
+    es: 'No se encontraron usuarios',
+    fr: 'Aucun utilisateur trouvé',
+    de: 'Keine Benutzer gefunden'
+  }
+}
