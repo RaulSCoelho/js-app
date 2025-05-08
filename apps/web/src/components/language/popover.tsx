@@ -8,7 +8,11 @@ import { Button } from '../button'
 import { languages } from './consts'
 import { useLanguage } from './use-language'
 
-export function LanguagePopover() {
+interface LanguagePopoverProps {
+  className?: string
+}
+
+export function LanguagePopover({ className }: LanguagePopoverProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { language, setLanguage, multiLangText } = useLanguage()
 
@@ -19,7 +23,7 @@ export function LanguagePopover() {
 
   return (
     <Popover placement="bottom-end" isOpen={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger className="ml-1">
+      <PopoverTrigger className={className}>
         <Avatar
           as="button"
           color="secondary"
