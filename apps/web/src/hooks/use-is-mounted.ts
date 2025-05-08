@@ -8,6 +8,7 @@ export function useIsMounted(fn: MaybePromise = () => {}, deps: React.Dependency
     maybePromise(fn).finally(() => {
       !isMounted && setIsMounted(true)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 
   return isMounted

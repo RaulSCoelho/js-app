@@ -43,32 +43,35 @@ export function UsersTable({ users = [] }: UsersTableProps) {
         }
       })
     },
-    []
+    [multiLangText]
   )
 
-  const renderCell = useCallback((user: User, columnKey: keyof User | 'actions') => {
-    if (columnKey === 'actions') {
-      return (
-        <Can I="manage" a="User">
-          <TableActionWrapper className="justify-center gap-4">
-            <TableAction
-              icon={TrashIcon}
-              tooltip={multiLangText(appUsersTableTexts.deleteTooltip)}
-              color="danger"
-              onClick={onDelete(user.id)}
-            />
-          </TableActionWrapper>
-        </Can>
-      )
-    }
+  const renderCell = useCallback(
+    (user: User, columnKey: keyof User | 'actions') => {
+      if (columnKey === 'actions') {
+        return (
+          <Can I="manage" a="User">
+            <TableActionWrapper className="justify-center gap-4">
+              <TableAction
+                icon={TrashIcon}
+                tooltip={multiLangText(appUsersTableTexts.deleteTooltip)}
+                color="danger"
+                onClick={onDelete(user.id)}
+              />
+            </TableActionWrapper>
+          </Can>
+        )
+      }
 
-    switch (columnKey) {
-      case 'role':
-        return <b className={roleClass({ role: user.role })}>{user[columnKey].toLocaleLowerCase()}</b>
-      default:
-        return user[columnKey]
-    }
-  }, [])
+      switch (columnKey) {
+        case 'role':
+          return <b className={roleClass({ role: user.role })}>{user[columnKey].toLocaleLowerCase()}</b>
+        default:
+          return user[columnKey]
+      }
+    },
+    [multiLangText, onDelete]
+  )
 
   const topContent: TableTopContent<User> = useCallback(
     ({ filterFields, columns, TableSearch, TableColumnSelector }) => (
