@@ -5,6 +5,24 @@ import { MaybePromise, maybePromise } from '@js-app/shared-utils'
 import { Modal, useConfirmationModal } from '@/components/modal'
 
 import { Button } from '../button'
+import { MultiLangText } from '../language'
+
+export const confirmationModalTexts = {
+  cancel: {
+    en: 'Cancel',
+    'pt-BR': 'Cancelar',
+    es: 'Cancelar',
+    fr: 'Annuler',
+    de: 'Abbrechen'
+  },
+  confirm: {
+    en: 'Confirm',
+    'pt-BR': 'Confirmar',
+    es: 'Confirmar',
+    fr: 'Confirmer',
+    de: 'Bestätigen'
+  }
+}
 
 export function ConfirmationModal() {
   const { question, onConfirm, onCancel, isLoading, setIsLoading, confirmationModal, ...rest } = useConfirmationModal()
@@ -21,6 +39,7 @@ export function ConfirmationModal() {
       onClose={handleAction(onCancel)}
       fullScreen={false}
       isKeyboardDismissDisabled={false}
+      classNames={{ header: 'pb-0' }}
       isDismissable
       {...rest}
     >
@@ -28,9 +47,11 @@ export function ConfirmationModal() {
         <p>{question}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onPress={handleAction(onCancel)}>Cancelar</Button>
+        <Button onPress={handleAction(onCancel)}>
+          <MultiLangText texts={confirmationModalTexts.cancel} />
+        </Button>
         <Button onPress={handleAction(onConfirm, true)} isLoading={isLoading}>
-          Confirmar
+          <MultiLangText texts={confirmationModalTexts.confirm} />
         </Button>
       </Modal.Footer>
     </Modal>
