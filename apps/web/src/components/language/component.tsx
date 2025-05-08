@@ -2,7 +2,7 @@
 
 import { LanguageText } from '@js-app/i18n'
 
-import { useLanguage } from './use-language'
+import { useLanguage } from './context'
 
 export interface MultiLangTextProps {
   texts: LanguageText

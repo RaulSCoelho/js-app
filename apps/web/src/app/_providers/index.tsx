@@ -4,7 +4,6 @@ import { HeroUIProvider, ToastProvider } from '@heroui/react'
 import { useRouter } from 'next/navigation'
 import { ThemeProvider } from 'next-themes'
 
-import { LanguageProvider } from '@/components/language'
 import { ConfirmationModal } from '@/components/modal'
 
 import { AbilityProvider } from './ability-provider'
@@ -18,18 +17,17 @@ declare module '@react-types/shared' {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter()
+
   return (
     <UserProvider>
       <AbilityProvider>
-        <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-            <HeroUIProvider navigate={router.push}>
-              {children}
-              <ConfirmationModal />
-              <ToastProvider />
-            </HeroUIProvider>
-          </ThemeProvider>
-        </LanguageProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <HeroUIProvider navigate={router.push}>
+            {children}
+            <ConfirmationModal />
+            <ToastProvider />
+          </HeroUIProvider>
+        </ThemeProvider>
       </AbilityProvider>
     </UserProvider>
   )

@@ -29,13 +29,13 @@ export interface UsersTableProps {
 
 export function UsersTable({ users = [] }: UsersTableProps) {
   const { can } = useAbility()
-  const { multiLangText } = useLanguage()
+  const lang = useLanguage()
 
   const onDelete = useCallback(
     (userId: number) => () => {
       confirmationModal({
-        title: multiLangText(appUsersTableTexts.deleteTitle),
-        question: multiLangText(appUsersTableTexts.deleteQuestion),
+        title: lang.multiLangText(appUsersTableTexts.deleteTitle),
+        question: lang.multiLangText(appUsersTableTexts.deleteQuestion),
         onConfirm: async () => {
           try {
             await deleteUser(userId)
@@ -43,7 +43,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
         }
       })
     },
-    [multiLangText]
+    [lang]
   )
 
   const renderCell = useCallback(
@@ -54,7 +54,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
             <TableActionWrapper className="justify-center gap-4">
               <TableAction
                 icon={TrashIcon}
-                tooltip={multiLangText(appUsersTableTexts.deleteTooltip)}
+                tooltip={lang.multiLangText(appUsersTableTexts.deleteTooltip)}
                 color="danger"
                 onClick={onDelete(user.id)}
               />
@@ -70,7 +70,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
           return user[columnKey]
       }
     },
-    [multiLangText, onDelete]
+    [lang, onDelete]
   )
 
   const topContent: TableTopContent<User> = useCallback(
@@ -85,7 +85,7 @@ export function UsersTable({ users = [] }: UsersTableProps) {
 
   return (
     <Table
-      aria-label={multiLangText(appUsersTableTexts.tableLabel)}
+      aria-label={lang.multiLangText(appUsersTableTexts.tableLabel)}
       selectionMode="none"
       items={users}
       rowKey="id"
@@ -94,14 +94,14 @@ export function UsersTable({ users = [] }: UsersTableProps) {
       renderCell={renderCell}
       topContent={topContent}
       columns={[
-        { uid: 'id', name: multiLangText(appUsersTableTexts.id), sortable: true },
-        { uid: 'username', name: multiLangText(appUsersTableTexts.username), sortable: true },
-        { uid: 'role', name: multiLangText(appUsersTableTexts.role), sortable: true },
+        { uid: 'id', name: lang.multiLangText(appUsersTableTexts.id), sortable: true },
+        { uid: 'username', name: lang.multiLangText(appUsersTableTexts.username), sortable: true },
+        { uid: 'role', name: lang.multiLangText(appUsersTableTexts.role), sortable: true },
         ...(can('manage', 'User')
-          ? [{ uid: 'actions', name: multiLangText(appUsersTableTexts.actions), sortable: false }]
+          ? [{ uid: 'actions', name: lang.multiLangText(appUsersTableTexts.actions), sortable: false }]
           : ([] as any))
       ]}
-      bodyProps={{ emptyContent: multiLangText(appUsersTableTexts.emptyContent) }}
+      bodyProps={{ emptyContent: lang.multiLangText(appUsersTableTexts.emptyContent) }}
       classNames={{ wrapper: 'bg-background' }}
     />
   )

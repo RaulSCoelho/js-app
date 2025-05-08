@@ -4,7 +4,7 @@ import { SupportedLanguage } from '@js-app/i18n'
 
 import { Autocomplete } from '../autocomplete'
 import { languages } from './consts'
-import { useLanguage } from './use-language'
+import { useLanguage } from './context'
 
 const languageSelectTexts = {
   label: {

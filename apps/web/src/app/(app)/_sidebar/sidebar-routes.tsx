@@ -16,33 +16,33 @@ import { SidebarRoute, SidebarRouteProps } from '@/components/sidebar'
 import { appSidebarTexts } from './consts'
 
 export function AppSidebarRoutes() {
-  const { multiLangText } = useLanguage()
+  const lang = useLanguage()
   const routes = useMemo(
     () =>
       [
         {
           icon: HomeIcon,
           href: '/',
-          children: multiLangText(appSidebarTexts.routes.home)
+          children: lang.multiLangText(appSidebarTexts.routes.home)
         },
-        { icon: ChartBarIcon, href: '#', children: multiLangText(appSidebarTexts.routes.dashboard) },
-        { icon: Cog6ToothIcon, href: '#', children: multiLangText(appSidebarTexts.routes.settings) },
-        { icon: LifebuoyIcon, href: '#', children: multiLangText(appSidebarTexts.routes.support) },
+        { icon: ChartBarIcon, href: '#', children: lang.multiLangText(appSidebarTexts.routes.dashboard) },
+        { icon: Cog6ToothIcon, href: '#', children: lang.multiLangText(appSidebarTexts.routes.settings) },
+        { icon: LifebuoyIcon, href: '#', children: lang.multiLangText(appSidebarTexts.routes.support) },
         {
           icon: UsersIcon,
           href: '/users',
-          children: multiLangText(appSidebarTexts.routes.users),
+          children: lang.multiLangText(appSidebarTexts.routes.users),
           can: { I: 'get', a: 'User' },
           subRoutes: [
             {
               icon: UserGroupIcon,
               href: '/users',
-              children: multiLangText(appSidebarTexts.routes.manageUsers)
+              children: lang.multiLangText(appSidebarTexts.routes.manageUsers)
             }
           ]
         }
       ] as SidebarRouteProps[],
-    [multiLangText]
+    [lang]
   )
 
   return (

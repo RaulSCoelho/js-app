@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import { Button } from '../button'
 import { languages } from './consts'
-import { useLanguage } from './use-language'
+import { useLanguage } from './context'
 
 interface LanguagePopoverProps {
   className?: string
